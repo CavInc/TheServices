@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 
 public class TheServiceApp extends Application {
     public static SharedPreferences sSharedPreferences;
@@ -14,6 +16,12 @@ public class TheServiceApp extends Application {
         super.onCreate();
         sContext = this.getBaseContext();
         sSharedPreferences = PreferenceManager.getDefaultSharedPreferences(sContext);
+
+        String androidID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+        if (androidID==null) {
+            TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
+            androidID = telephonyManager.getDeviceId();
+        }
     }
 
     public static SharedPreferences getSharedPreferences() {
