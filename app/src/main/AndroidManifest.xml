@@ -37,6 +37,7 @@
         </activity>
         <activity android:name=".ui.activitys.AdminActivity"
                   android:screenOrientation="landscape"
+                  android:theme="@style/AppTheme.NoActionBar"
                   >
         </activity>
     </application>

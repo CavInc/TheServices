@@ -25,7 +25,7 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         mNavigationDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
        setupToolBar();
-      //  setupDrower();
+       setupDrower();
     }
 
     private void setupDrower() {
