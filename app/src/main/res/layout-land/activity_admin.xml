@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
+    tools:context="cav.theservices.ui.activitys.AdminActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true">
     <android.support.design.widget.CoordinatorLayout
@@ -26,11 +27,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:paddingBottom="@dimen/activity_vertical_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="cav.theservices.ui.activitys.AdminActivity">
+            android:paddingTop="@dimen/activity_vertical_margin">
+            <FrameLayout
+                android:id="@+id/frgmCont"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </RelativeLayout>
 
