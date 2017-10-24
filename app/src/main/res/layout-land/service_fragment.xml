@@ -1,10 +1,33 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <TextView
-        android:text="Редактирование сервисов"
-        android:layout_width="match_parent"
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Режим администратора"
+        android:id="@+id/setting_app_mode"
+        />
+
+    <Switch
+        android:id="@+id/setting_full_screen"
+        android:text="Полноэкранный режим"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/setting_com_serv"
+            android:hint="Адрес командного сервера"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri"
+            android:textColorHint="@android:color/holo_blue_dark"
+            android:fontFamily="sans-serif-condensed"/>
+    </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

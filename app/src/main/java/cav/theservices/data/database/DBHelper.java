@@ -9,6 +9,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 0 ;
     public static final String SERVICE_HEAD_TABLE = "service_head";
     public static final String SERVICE_SPEC_TABLE = "service_spec";
+    public static final String DEVICE_LIST_TABLE = "device_list";
 
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -38,6 +39,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     " title text,"+
                     " body text,"+
                     " primary key(id,lang_id))");
+
+            db.execSQL("create table "+DEVICE_LIST_TABLE+" ("+
+                    " device_id text not null primary key)");
 
         }
     }
