@@ -4,11 +4,18 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
+        android:id="@+id/item_serv_title"
         android:text="Название услуги"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/item_serv_body"
         android:text="Описание услуги"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/item_serv_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
