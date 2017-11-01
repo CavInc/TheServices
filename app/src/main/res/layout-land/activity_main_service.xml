@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cav.theservices.ui.activitys.MainServiceActivity">
+
     <ImageView
         android:id="@+id/main_service_logo"
         android:src="@drawable/logo_test"
@@ -19,7 +20,10 @@
     <TextView
         android:text="Menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/main_service_grid"
+        android:layout_alignEnd="@+id/main_service_grid"/>
     <GridLayout
         android:id="@+id/main_service_grid"
         android:layout_width="match_parent"

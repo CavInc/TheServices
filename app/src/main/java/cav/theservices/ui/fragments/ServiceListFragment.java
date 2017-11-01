@@ -53,6 +53,7 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
             adapter = new ServiceListAdapterEdit(this.getContext(),R.layout.service_list_item,model);
             mListView.setAdapter(adapter);
         }else {
+            adapter.setData(model);
             adapter.notifyDataSetChanged();
         }
     }
