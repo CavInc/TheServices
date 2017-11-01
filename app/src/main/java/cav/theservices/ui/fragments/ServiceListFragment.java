@@ -1,10 +1,12 @@
 package cav.theservices.ui.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,8 @@ import cav.theservices.ui.adapters.ServiceListAdapterEdit;
 
 public class ServiceListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener {
 
+    private static final int NEW_RECORD = 100;
+    private static final String TAG = "SLFAGMENT";
     private DataManager mDataManager;
 
     private ListView mListView;
@@ -40,7 +44,6 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
         mFab.setOnClickListener(this);
         mListView.setOnItemLongClickListener(this);
 
-        updateUI();
         return view;
     }
 
@@ -52,14 +55,20 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
         }else {
             adapter.notifyDataSetChanged();
         }
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG,"On START");
+        updateUI();
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.sr_list_fab){
             Intent intent = new Intent(getActivity(), InsEditServiceActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,NEW_RECORD);
         }
 
     }
@@ -67,5 +76,12 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         return true;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK ){
+            updateUI();
+        }
     }
 }

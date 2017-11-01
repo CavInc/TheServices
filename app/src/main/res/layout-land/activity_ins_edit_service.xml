@@ -28,6 +28,7 @@
         android:id="@+id/price_serv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
         android:layout_above="@+id/save_serv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>

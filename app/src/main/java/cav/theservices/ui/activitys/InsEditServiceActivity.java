@@ -1,5 +1,6 @@
 package cav.theservices.ui.activitys;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,6 +58,9 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
 
         ServiceEditModel data = new ServiceEditModel(price," "," ",rec);
         mDataManager.getDB().addNewService(data);
+
+        Intent answerIntent = new Intent();
+        setResult(RESULT_OK,answerIntent);
 
     }
 }
