@@ -33,6 +33,83 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="fill"
+            android:background="@android:color/holo_blue_light">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="fill"
+            android:orientation="vertical"
+            android:background="@android:color/holo_blue_light">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="fill"
+            android:orientation="vertical"
+            android:background="@android:color/holo_blue_light">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="left"
+            android:background="@android:color/holo_blue_light">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@android:color/holo_blue_light">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@android:color/holo_blue_light">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="128px"/>
+            <TextView
+                android:text="Услуга 3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
 
     </GridLayout>
 
