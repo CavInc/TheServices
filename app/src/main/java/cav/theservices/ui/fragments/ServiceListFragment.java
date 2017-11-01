@@ -40,11 +40,12 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
         mFab.setOnClickListener(this);
         mListView.setOnItemLongClickListener(this);
 
+        updateUI();
         return view;
     }
 
     private void updateUI(){
-        ArrayList <ServiceClientEditModel> model = new ArrayList<>();
+        ArrayList <ServiceClientEditModel> model = mDataManager.getServiceListEdit();
         if (adapter == null){
             adapter = new ServiceListAdapterEdit(this.getContext(),R.layout.service_list_item,model);
             mListView.setAdapter(adapter);

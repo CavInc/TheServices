@@ -50,7 +50,7 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         String title = mTitleServ.getText().toString();
         String body = mBodyServ.getText().toString();
         Float price = Float.valueOf(mPrice.getText().toString());
-        LangDataModel ld = new LangDataModel(1,title,body);
+        LangDataModel ld = new LangDataModel(1,title,body); // поменять
 
         ArrayList<LangDataModel> rec = new ArrayList<>();
         rec.add(ld);

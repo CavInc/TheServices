@@ -2,6 +2,7 @@ package cav.theservices.data.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import cav.theservices.data.models.LangDataModel;
@@ -49,8 +50,10 @@ public class DBConnect {
         close();
     }
 
-    public void getListService(){
-
+    public Cursor getListService(int lang){
+        String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
+                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang;
+        return database.rawQuery(sql,null);
     }
 
 
