@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DBName = "tsr.db3";
-    public static final int DATABASE_VERSION = 0 ;
+    public static final int DATABASE_VERSION = 1 ;
     public static final String SERVICE_HEAD_TABLE = "service_head";
     public static final String SERVICE_SPEC_TABLE = "service_spec";
     public static final String DEVICE_LIST_TABLE = "device_list";
@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " big_img_file text)");
 
             db.execSQL("create table "+SERVICE_SPEC_TABLE+" (id integer not null,"+
-                    " lang_id integer,"+
+                    " lang_id integer,"+ //0 - украинский 1 - русский  2 -анлийский
                     " title text,"+
                     " body text,"+
                     " primary key(id,lang_id))");

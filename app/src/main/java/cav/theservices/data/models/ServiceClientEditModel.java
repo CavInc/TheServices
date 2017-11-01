@@ -9,6 +9,25 @@ public class ServiceClientEditModel {
     private String mLang;
     private String mImage;
 
+    public ServiceClientEditModel(int id, String title, String body, String screen, Float price, String lang, String image) {
+        mId = id;
+        mTitle = title;
+        mBody = body;
+        mScreen = screen;
+        mPrice = price;
+        mLang = lang;
+        mImage = image;
+    }
+
+    public ServiceClientEditModel(int id, String title, String body, String screen, Float price, String image) {
+        mId = id;
+        mTitle = title;
+        mBody = body;
+        mScreen = screen;
+        mPrice = price;
+        mImage = image;
+    }
+
     public int getId() {
         return mId;
     }
