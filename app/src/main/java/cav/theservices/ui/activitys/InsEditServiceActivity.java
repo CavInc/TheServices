@@ -31,7 +31,10 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-
+        if (view.getId() == R.id.save_serv){
+            saveData();
+            finish();
+        }
     }
 
     private void saveData(){

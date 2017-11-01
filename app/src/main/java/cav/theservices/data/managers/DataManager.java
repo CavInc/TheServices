@@ -2,6 +2,7 @@ package cav.theservices.data.managers;
 
 import android.content.Context;
 
+import cav.theservices.data.database.DBConnect;
 import cav.theservices.utils.TheServiceApp;
 
 public class DataManager {
@@ -9,6 +10,7 @@ public class DataManager {
 
     private Context mContext;
     private PreferenseManager mPreferenseManager;
+    private DBConnect mDB;
 
     public static DataManager getInstance() {
         if (INSTANCE==null){
@@ -19,6 +21,7 @@ public class DataManager {
     public DataManager(){
         this.mContext = TheServiceApp.getContext();
         mPreferenseManager = new PreferenseManager();
+        mDB = new DBConnect(mContext);
     }
 
     public Context getContext() {
@@ -27,5 +30,9 @@ public class DataManager {
 
     public PreferenseManager getPreferenseManager() {
         return mPreferenseManager;
+    }
+
+    public DBConnect getDB() {
+        return mDB;
     }
 }
