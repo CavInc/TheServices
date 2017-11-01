@@ -1,5 +1,6 @@
 package cav.theservices.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientEditModel;
+import cav.theservices.ui.activitys.InsEditServiceActivity;
 import cav.theservices.ui.adapters.ServiceListAdapterEdit;
 
 public class ServiceListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener {
@@ -54,11 +56,15 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        if (view.getId() == R.id.sr_list_fab){
+            Intent intent = new Intent(getActivity(), InsEditServiceActivity.class);
+            startActivity(intent);
+        }
 
     }
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         return true;
     }
 }

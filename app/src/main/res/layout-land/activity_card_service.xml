@@ -12,6 +12,7 @@
 
     <ImageView
         android:id="@+id/card_img"
+        android:src="@drawable/nofoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -33,6 +34,7 @@
 
     <TextView
         android:id="@+id/card_spec"
+        android:layout_below="@+id/card_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -43,7 +45,7 @@
         android:layout_height="wrap_content"/>
 
     <EditText
-
+        android:id="@+id/card_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
@@ -51,7 +53,13 @@
         android:text="Button"
         android:drawableLeft="@drawable/ic_local_post_office_black_24dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/card_img"
+        android:layout_alignEnd="@+id/card_img"
+        android:layout_marginRight="38dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="29dp"/>
 
 
 
