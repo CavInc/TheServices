@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DataManager mDataManager;
 
+    private TextView mMainLabel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDataManager = DataManager.getInstance();
 
         mLogoView = (ImageView) findViewById(R.id.main_logo);
+
+        mMainLabel = (TextView) findViewById(R.id.main_label);
 
         mLangButton1 = (Button) findViewById(R.id.main_bt_bt1);
         mLangButton2 = (Button) findViewById(R.id.main_bt_bt2);
@@ -39,6 +44,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLangButton3.setOnClickListener(this);
 
         mLogoView.setOnLongClickListener(this);
+
+        String ml = mDataManager.getPreferenseManager().getMainScreenLabel();
+        if (ml!= null) {
+            mMainLabel.setText(ml);
+        }
 
     }
 

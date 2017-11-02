@@ -29,6 +29,10 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
 
     private int selLang;
 
+    private int offset = 0;
+    private int start = 0;
+    private int limit = 5; // количество элементов для выборки
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,7 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         if (count< 6) {
             mLL6.setEnabled(false);
         }
+
 
     }
 }
