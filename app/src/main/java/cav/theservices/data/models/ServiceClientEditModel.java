@@ -28,6 +28,13 @@ public class ServiceClientEditModel {
         mImage = image;
     }
 
+    public ServiceClientEditModel(int id, String title, String screen, String lang) {
+        mId = id;
+        mTitle = title;
+        mScreen = screen;
+        mLang = lang;
+    }
+
     public int getId() {
         return mId;
     }

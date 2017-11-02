@@ -19,6 +19,11 @@ public class ServiceClientModel {
         mPrice = price;
     }
 
+    public ServiceClientModel(int id, String title, String screen) {
+        mId = id;
+        mTitle = title;
+        mScreen = screen;
+    }
 
     public int getId() {
         return mId;

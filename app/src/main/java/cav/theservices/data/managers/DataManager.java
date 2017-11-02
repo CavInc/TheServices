@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import cav.theservices.data.database.DBConnect;
 import cav.theservices.data.models.ServiceClientEditModel;
+import cav.theservices.data.models.ServiceClientModel;
 import cav.theservices.utils.TheServiceApp;
 
 public class DataManager {
@@ -57,5 +58,18 @@ public class DataManager {
         }
         mDB.close();
         return  rec;
+    }
+
+    public ArrayList<ServiceClientModel> getLimitService(int lang, int start, int limit){
+        ArrayList<ServiceClientModel> rec = new ArrayList<>();
+        mDB.open();
+        Cursor cursor = mDB.getLimitService(lang,start,limit);
+        while (cursor.moveToNext()){
+            rec.add(new ServiceClientModel(cursor.getInt(cursor.getColumnIndex("id")),
+                    cursor.getString(cursor.getColumnIndex("title")),
+                    cursor.getString(cursor.getColumnIndex("icon_file"))));
+        }
+        mDB.close();
+        return rec;
     }
 }

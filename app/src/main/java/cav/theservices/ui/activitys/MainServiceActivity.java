@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.ServiceClientModel;
+import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.utils.ConstantManager;
 
 public class MainServiceActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +33,7 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
 
     private int selLang;
 
-    private int offset = 0;
+    private int offset = 5;
     private int start = 0;
     private int limit = 5; // количество элементов для выборки
 
@@ -80,6 +84,9 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         Log.d(TAG,"TAP");
+        if (view.getId() == R.id.ms_lv_6){
+
+        }
 
     }
 
@@ -88,7 +95,12 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         if (count< 6) {
             mLL6.setEnabled(false);
         }
-
+        int i = 0;
+        ArrayList<ServiceClientModel> data =  mDataManager.getLimitService(selLang,start,limit);
+        for (ServiceClientModel l:data){
+            //TODO добавить установку картинки
+            mTextViews[i].setText(l.getTitle());
+        }
 
     }
 }

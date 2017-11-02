@@ -65,8 +65,12 @@ public class DBConnect {
         return res;
     }
 
-    public void getLimitService(int lang,int start){
+    public Cursor getLimitService(int lang,int start,int limit){
+        String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
+                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+" limit "+limit+" offset "+start;
 
+        Cursor cursor = database.rawQuery(sql,null);
+        return cursor;
     }
 
 
