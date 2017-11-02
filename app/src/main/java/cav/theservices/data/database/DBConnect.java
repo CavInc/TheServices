@@ -56,5 +56,18 @@ public class DBConnect {
         return database.rawQuery(sql,null);
     }
 
+    public int getCountService(int lang){
+        open();
+        Cursor cursor = database.rawQuery("select count(1) from "+DBHelper.SERVICE_SPEC_TABLE+" where lang_id="+lang,null);
+        cursor.moveToFirst();
+        int res = cursor.getInt(0);
+        close();
+        return res;
+    }
+
+    public void getLimitService(int lang,int start){
+
+    }
+
 
 }

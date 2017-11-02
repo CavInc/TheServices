@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.utils.ConstantManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,View.OnLongClickListener {
 
@@ -46,10 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,MainServiceActivity.class);
         switch (view.getId()){
             case R.id.main_bt_bt1:
+                intent.putExtra(ConstantManager.SELECT_LANG,0);
                 break;
             case R.id.main_bt_bt2:
+                intent.putExtra(ConstantManager.SELECT_LANG,1);
                 break;
             case R.id.main_bt_bt3:
+                intent.putExtra(ConstantManager.SELECT_LANG,2);
                 break;
         }
         startActivity(intent);
