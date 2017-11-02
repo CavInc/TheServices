@@ -13,10 +13,16 @@
         android:id="@+id/img_serv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/title_serv"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/title_serv"
+            android:hint="Название услуги"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </android.support.design.widget.TextInputLayout>
+
     <EditText
         android:id="@+id/body_serv"
         android:layout_width="match_parent"

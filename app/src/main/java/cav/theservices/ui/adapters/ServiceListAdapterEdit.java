@@ -18,6 +18,7 @@ import cav.theservices.data.models.ServiceClientModel;
 public class ServiceListAdapterEdit extends ArrayAdapter<ServiceClientEditModel> {
     private LayoutInflater mInflater;
     private int resLayout;
+    private ArrayList<ServiceClientEditModel> mData;
 
     public ServiceListAdapterEdit(Context context, int resource, List<ServiceClientEditModel> objects) {
         super(context, resource, objects);
@@ -44,6 +45,11 @@ public class ServiceListAdapterEdit extends ArrayAdapter<ServiceClientEditModel>
         holder.mBody.setText(record.getBody());
         holder.mPrice.setText(record.getPrice().toString());
         return row;
+    }
+
+    public void setData(ArrayList<ServiceClientEditModel> data) {
+        this.clear();
+        this.addAll(data);
     }
 
     class ViewHolder {
