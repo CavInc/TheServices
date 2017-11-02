@@ -19,6 +19,8 @@
         <EditText
             android:id="@+id/title_serv"
             android:hint="Название услуги"
+            android:maxLines="1"
+            android:lines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </android.support.design.widget.TextInputLayout>
@@ -30,14 +32,21 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
-    <EditText
-        android:id="@+id/price_serv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+
+    <android.support.design.widget.TextInputLayout
         android:layout_above="@+id/save_serv"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/price_serv"
+            android:hint="Цена на услугу"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/save_serv"

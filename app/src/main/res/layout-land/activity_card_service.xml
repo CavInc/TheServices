@@ -9,58 +9,79 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cav.theservices.ui.activitys.MainServiceActivity">
+    <LinearLayout
+        android:id="@+id/up_lv"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/card_hotel_logg"
+            android:src="@drawable/logo_test"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/card_img"
         android:src="@drawable/nofoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/up_lv"
+        android:layout_width="300dp"
+        android:layout_height="300dp"/>
 
-    <ImageView
-        android:id="@+id/card_hotel_logg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/data_lv"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/up_lv"
+        android:layout_above="@+id/card_out_logo"
+        android:layout_toRightOf="@+id/card_img"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:id="@+id/card_title"
+            android:text="Услуга 1"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/card_spec"
+            android:layout_below="@+id/card_title"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/card_price"
+            android:text="Цена"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/card_comment"
+            android:hint="Примечание к заказу"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/card_button"
+            android:text="Button"
+            android:drawableLeft="@drawable/ic_local_post_office_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/card_out_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/card_title"
-        android:text="Услуга 1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/card_spec"
-        android:layout_below="@+id/card_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/card_price"
-        android:text="Цена"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/card_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/card_button"
-        android:text="Button"
-        android:drawableLeft="@drawable/ic_local_post_office_black_24dp"
+        android:src="@drawable/logo_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/card_img"
-        android:layout_alignEnd="@+id/card_img"
-        android:layout_marginRight="38dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="29dp"/>
-
-
+        android:layout_alignParentRight="true"
+        />
 
 </RelativeLayout>

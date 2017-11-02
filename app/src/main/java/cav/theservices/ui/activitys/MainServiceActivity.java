@@ -1,5 +1,6 @@
 package cav.theservices.ui.activitys;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     private DataManager mDataManager;
 
     private int selLang;
+
+    private ArrayList<ServiceClientModel> mDataModel;
 
     private int offset = 5;
     private int start = 0;
@@ -84,6 +87,17 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         Log.d(TAG,"TAP");
         if (view.getId() == R.id.ms_lv_6){
 
+        } else {
+            Intent intent = new Intent(this,CardServiceActivity.class);
+            switch (view.getId()){
+                case R.id.ms_lv_1:
+                    break;
+                case R.id.ms_lv_2:
+                    break;
+                case R.id.ms_lv_3:
+                    break;
+            }
+            startActivity(intent);
         }
 
     }
@@ -95,8 +109,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         }
 
         int i = 0;
-        ArrayList<ServiceClientModel> data =  mDataManager.getLimitService(selLang,start,limit);
-        for (ServiceClientModel l:data){
+        mDataModel =  mDataManager.getLimitService(selLang,start,limit);
+        for (ServiceClientModel l:mDataModel){
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
             i +=1;

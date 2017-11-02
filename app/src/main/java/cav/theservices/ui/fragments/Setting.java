@@ -3,6 +3,8 @@ package cav.theservices.ui.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,17 +32,26 @@ public class Setting extends Fragment {
         mAppMode = (Switch) view.findViewById(R.id.setting_app_mode);
 
         mMainLabel = (EditText) view.findViewById(R.id.setting_main_label);
-        mMainLabel.setOnEditorActionListener(mEL);
+        mMainLabel.addTextChangedListener(mELW);
 
         return view;
     }
 
-    // возможно переделать .
-    TextView.OnEditorActionListener mEL = new TextView.OnEditorActionListener() {
+
+    TextWatcher mELW = new TextWatcher() {
         @Override
-        public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-            mDataManager.getPreferenseManager().setMainScreenLabel(textView.getText().toString());
-            return true;
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            mDataManager.getPreferenseManager().setMainScreenLabel(editable.toString());
         }
     };
 
