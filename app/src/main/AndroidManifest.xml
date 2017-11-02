@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activitys.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -28,10 +29,12 @@
         </activity>
         <activity
             android:name=".ui.activitys.CardServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".ui.activitys.MainServiceActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="landscape">
         </activity>
         <activity

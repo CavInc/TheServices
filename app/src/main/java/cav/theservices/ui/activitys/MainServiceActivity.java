@@ -79,8 +79,6 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-
-
     @Override
     public void onClick(View view) {
         Log.d(TAG,"TAP");
@@ -95,11 +93,13 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         if (count< 6) {
             mLL6.setEnabled(false);
         }
+
         int i = 0;
         ArrayList<ServiceClientModel> data =  mDataManager.getLimitService(selLang,start,limit);
         for (ServiceClientModel l:data){
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
+            i +=1;
         }
 
     }
