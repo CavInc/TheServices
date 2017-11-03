@@ -88,7 +88,6 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(this,CardServiceActivity.class);
             switch (view.getId()){
                 case R.id.ms_lv_1:
-                    Log.d(TAG,mDataModel.get(0).getTitle());
                     intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(0).getId());
                     break;
                 case R.id.ms_lv_2:
@@ -97,6 +96,12 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
                 case R.id.ms_lv_3:
                     intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(2).getId());
                     break;
+                case R.id.ms_lv_4:
+                    intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(3).getId());
+                    break;
+                case R.id.ms_lv_5:
+                    intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(4).getId());
+                    break;
             }
             startActivity(intent);
         }
@@ -104,14 +109,15 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setDataLang(){
-        /*
-        for (int i=0;i<5;i++){
-            mLL[i].setVisibility(View.INVISIBLE);
-        }
-        */
         int count = mDataManager.getDB().getCountService(1);
-        if (count< 6) {
-            mLL[5].setEnabled(false);
+        if (count!=0 ) {
+            for (int i = 0; i < 5; i++) {
+                mLL[i].setVisibility(View.INVISIBLE);
+            }
+        }
+
+        if (count > 6) {
+            mLL[5].setVisibility(View.VISIBLE);
         }
 
         int i = 0;
@@ -119,8 +125,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         for (ServiceClientModel l:mDataModel){
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
-            i +=1;
             mLL[i].setVisibility(View.VISIBLE);
+            i +=1;
         }
     }
 }
