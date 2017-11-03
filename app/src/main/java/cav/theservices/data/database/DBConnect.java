@@ -73,5 +73,12 @@ public class DBConnect {
         return cursor;
     }
 
+    // возвращаем 1 карточку
+    public Cursor getOneCard(int id,int lang){
+        String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body,sh.big_img_file from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
+                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+" where sh.id="+id;
+        return database.rawQuery(sql,null);
+    }
+
 
 }

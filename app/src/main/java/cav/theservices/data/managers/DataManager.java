@@ -72,4 +72,19 @@ public class DataManager {
         mDB.close();
         return rec;
     }
+
+    public ServiceClientModel getOneCard(int id,int lang){
+        mDB.open();
+        Cursor cursor = mDB.getOneCard(id,lang);
+        cursor.moveToFirst();
+        ServiceClientModel model = new ServiceClientModel(cursor.getInt(cursor.getColumnIndex("id")),
+                cursor.getString(cursor.getColumnIndex("title")),
+                cursor.getString(cursor.getColumnIndex("body")),
+                cursor.getString(cursor.getColumnIndex("big_img_file")),
+                cursor.getFloat(cursor.getColumnIndex("price"))
+        );
+        mDB.close();
+
+        return model;
+    }
 }

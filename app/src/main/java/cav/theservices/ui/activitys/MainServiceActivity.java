@@ -20,12 +20,8 @@ import cav.theservices.utils.ConstantManager;
 public class MainServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MSA";
-    private LinearLayout mLL1;
-    private LinearLayout mLL2;
-    private LinearLayout mLL3;
-    private LinearLayout mLL4;
-    private LinearLayout mLL5;
-    private LinearLayout mLL6;
+
+    private LinearLayout[] mLL;
 
     private ImageView[] mImageViews;
     private TextView[] mTextViews;
@@ -48,20 +44,21 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         mDataManager = DataManager.getInstance();
 
         selLang =   getIntent().getIntExtra(ConstantManager.SELECT_LANG,1);
+        mLL = new LinearLayout[6];
 
-        mLL1 = (LinearLayout) findViewById(R.id.ms_lv_1);
-        mLL2 = (LinearLayout) findViewById(R.id.ms_lv_2);
-        mLL3 = (LinearLayout) findViewById(R.id.ms_lv_3);
-        mLL4 = (LinearLayout) findViewById(R.id.ms_lv_4);
-        mLL5 = (LinearLayout) findViewById(R.id.ms_lv_5);
-        mLL6 = (LinearLayout) findViewById(R.id.ms_lv_6);
+        mLL[0] = (LinearLayout) findViewById(R.id.ms_lv_1);
+        mLL[1] = (LinearLayout) findViewById(R.id.ms_lv_2);
+        mLL[2] = (LinearLayout) findViewById(R.id.ms_lv_3);
+        mLL[3] = (LinearLayout) findViewById(R.id.ms_lv_4);
+        mLL[4] = (LinearLayout) findViewById(R.id.ms_lv_5);
+        mLL[5] = (LinearLayout) findViewById(R.id.ms_lv_6);
 
-        mLL1.setOnClickListener(this);
-        mLL2.setOnClickListener(this);
-        mLL3.setOnClickListener(this);
-        mLL4.setOnClickListener(this);
-        mLL5.setOnClickListener(this);
-        mLL6.setOnClickListener(this);
+        mLL[0].setOnClickListener(this);
+        mLL[1].setOnClickListener(this);
+        mLL[2].setOnClickListener(this);
+        mLL[3].setOnClickListener(this);
+        mLL[4].setOnClickListener(this);
+        mLL[5].setOnClickListener(this);
 
         mImageViews = new ImageView[5];
         mTextViews = new TextView[5];
@@ -91,10 +88,14 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
             Intent intent = new Intent(this,CardServiceActivity.class);
             switch (view.getId()){
                 case R.id.ms_lv_1:
+                    Log.d(TAG,mDataModel.get(0).getTitle());
+                    intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(0).getId());
                     break;
                 case R.id.ms_lv_2:
+                    intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(1).getId());
                     break;
                 case R.id.ms_lv_3:
+                    intent.putExtra(ConstantManager.SERVICE_ID,mDataModel.get(2).getId());
                     break;
             }
             startActivity(intent);
@@ -103,9 +104,14 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setDataLang(){
+        /*
+        for (int i=0;i<5;i++){
+            mLL[i].setVisibility(View.INVISIBLE);
+        }
+        */
         int count = mDataManager.getDB().getCountService(1);
         if (count< 6) {
-            mLL6.setEnabled(false);
+            mLL[5].setEnabled(false);
         }
 
         int i = 0;
@@ -114,7 +120,7 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
             i +=1;
+            mLL[i].setVisibility(View.VISIBLE);
         }
-
     }
 }
