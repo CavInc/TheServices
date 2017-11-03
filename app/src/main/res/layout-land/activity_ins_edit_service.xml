@@ -9,13 +9,32 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="cav.theservices.ui.activitys.InsEditServiceActivity">
+    <LinearLayout
+        android:id="@+id/up_lv"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Язык услуги"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Spinner
+            android:id="@+id/sel_lang_serv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </Spinner>
+    </LinearLayout>
     <ImageView
         android:id="@+id/img_serv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/up_lv">
         <EditText
             android:id="@+id/title_serv"
             android:hint="Название услуги"

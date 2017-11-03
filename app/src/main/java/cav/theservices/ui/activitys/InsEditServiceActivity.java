@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,8 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
     private EditText mTitleServ;
     private EditText mBodyServ;
     private EditText mPrice;
+
+    private Spinner mSpinner;
 
     private DataManager mDataManager;
 
@@ -37,6 +41,13 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         mSaveButton = (Button) findViewById(R.id.save_serv);
 
         mSaveButton.setOnClickListener(this);
+
+        mSpinner = (Spinner) findViewById(R.id.sel_lang_serv);
+
+        String[] spData = new String[]{"Украинский","Русский","Анлийский"};
+        ArrayAdapter<String> spAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spData);
+        spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(spAdapter);
     }
 
     @Override

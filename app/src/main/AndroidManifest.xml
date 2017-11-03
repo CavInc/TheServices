@@ -30,6 +30,7 @@
         <activity
             android:name=".ui.activitys.CardServiceActivity"
             android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="landscape">
         </activity>
         <activity
@@ -42,7 +43,8 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ui.activitys.InsEditServiceActivity">
+        <activity android:name=".ui.activitys.InsEditServiceActivity"
+                  android:screenOrientation="landscape">
         </activity>
     </application>
 
