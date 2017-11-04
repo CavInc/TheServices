@@ -113,7 +113,7 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     private void setDataLang(){
         int count = mDataManager.getDB().getCountService(1);
         if (count!=0 ) {
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 6; i++) {
                 mLL[i].setVisibility(View.INVISIBLE);
             }
         }
