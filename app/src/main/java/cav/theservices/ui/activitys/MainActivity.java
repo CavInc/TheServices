@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mLogoView.setOnLongClickListener(this);
 
-        String ml = mDataManager.getPreferenseManager().getMainScreenLabel();
-        if (ml!= null) {
-            mMainLabel.setText(ml);
-        }
-
     }
 
     @Override
@@ -75,5 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent admin = new Intent(this,AdminActivity.class);
         startActivity(admin);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String ml = mDataManager.getPreferenseManager().getMainScreenLabel();
+        if (ml!= null) {
+            mMainLabel.setText(ml);
+        }
     }
 }

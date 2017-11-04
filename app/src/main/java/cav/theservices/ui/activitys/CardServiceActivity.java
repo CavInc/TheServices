@@ -2,11 +2,14 @@ package cav.theservices.ui.activitys;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.MenuView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
@@ -56,6 +59,9 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
         mTitle.setText(mModel.getTitle());
         mBody.setText(mModel.getBody());
         mPrice.setText(String.valueOf(mModel.getPrice()));
+        if (mModel.getScreen() == null || mModel.getScreen().length() == 1){
+            Picasso.with(this).load(R.drawable.nofoto).into(mBigImage);
+        }
     }
 
     @Override

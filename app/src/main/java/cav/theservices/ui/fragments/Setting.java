@@ -37,6 +37,14 @@ public class Setting extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        String lx = mDataManager.getPreferenseManager().getMainScreenLabel();
+        if (lx.length() != 0 ) {
+            mMainLabel.setText(lx);
+        }
+    }
 
     TextWatcher mELW = new TextWatcher() {
         @Override

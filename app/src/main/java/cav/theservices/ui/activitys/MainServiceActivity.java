@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import cav.theservices.R;
@@ -126,6 +128,12 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
             mLL[i].setVisibility(View.VISIBLE);
+            Log.d(TAG, String.valueOf((l.getScreen().length())));
+            if (l.getScreen().equals(" ")) {
+                Picasso.with(this).load(R.drawable.nofoto).into(mImageViews[i]);
+            } else {
+
+            }
             i +=1;
         }
     }
