@@ -8,6 +8,9 @@ import cav.theservices.utils.TheServiceApp;
 public class PreferenseManager {
     private static final String MAIN_SCREEN_LABEL = "MAIN_SCREEN_LABEL";
     private static final String COMMAND_SERVER = "COMMAND_SERVER";
+    private static final String APP_MODE = "APP_MODE";
+    private static final String FULL_SCREEN = "FULL_SCREEN";
+    private static final String ADMIN_PASSWORD = "ADMIN_PASSWORD";
     private SharedPreferences mSharedPreferences;
 
     public PreferenseManager() {
@@ -29,6 +32,7 @@ public class PreferenseManager {
         edit.apply();
     }
 
+    // название на главном экране
     public String getMainScreenLabel (){
         return mSharedPreferences.getString(MAIN_SCREEN_LABEL,null);
     }
@@ -38,6 +42,7 @@ public class PreferenseManager {
         editor.apply();
     }
 
+    // командный сервер
     public String getComandServerUrl(){
         return mSharedPreferences.getString(COMMAND_SERVER,null);
     }
@@ -45,6 +50,39 @@ public class PreferenseManager {
     public void setCommandServerUrl(String url){
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(COMMAND_SERVER,url);
+        editor.apply();
+    }
+
+    // Режим работы приложения
+    public boolean getAppMode() {
+        return mSharedPreferences.getBoolean(APP_MODE,false);
+    }
+
+    public void setAppMode(boolean mode){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(APP_MODE,mode);
+        editor.apply();
+    }
+
+    // полноэкранный режим или нет
+    public boolean getFullScreen() {
+        return mSharedPreferences.getBoolean(FULL_SCREEN,false);
+    }
+
+    public void setFullScreen(boolean mode){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean(FULL_SCREEN,mode);
+        editor.apply();
+    }
+
+    // пароль админа
+    public String getAdminPassword(){
+        return mSharedPreferences.getString(ADMIN_PASSWORD,null);
+    }
+
+    public void setAdminPassword(String password){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(ADMIN_PASSWORD,password);
         editor.apply();
     }
 

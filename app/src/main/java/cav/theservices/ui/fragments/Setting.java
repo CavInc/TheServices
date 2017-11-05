@@ -24,6 +24,7 @@ public class Setting extends Fragment {
     private EditText mMainLabel;
     private EditText mComandServer;
     private Switch mFullScreen;
+    private EditText mAdmimPass;
 
     @Nullable
     @Override
@@ -39,6 +40,9 @@ public class Setting extends Fragment {
 
         mMainLabel = (EditText) view.findViewById(R.id.setting_main_label);
         mMainLabel.addTextChangedListener(mELW);
+
+        mAdmimPass = (EditText) view.findViewById(R.id.setting_admin_pass);
+        mAdmimPass.addTextChangedListener(mPasswatcer);
 
         return view;
     }
@@ -83,6 +87,23 @@ public class Setting extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
             mDataManager.getPreferenseManager().setCommandServerUrl(editable.toString());
+        }
+    };
+
+    TextWatcher mPasswatcer = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            mDataManager.getPreferenseManager().setAdminPassword(editable.toString());
         }
     };
 

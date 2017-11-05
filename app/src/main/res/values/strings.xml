@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The services</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Отмена</string>
 </resources>

@@ -39,7 +39,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_1"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -67,7 +66,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_2"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/main_grid_padding"
@@ -94,7 +92,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_3"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/main_grid_padding"
@@ -125,7 +122,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_4"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/main_grid_padding"
@@ -153,7 +149,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_5"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/main_grid_padding"
@@ -180,7 +175,6 @@
             <LinearLayout
                 android:id="@+id/ms_lv_6"
                 android:orientation="vertical"
-                android:background="@android:color/holo_green_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/main_grid_padding"

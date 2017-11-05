@@ -1,8 +1,12 @@
 package cav.theservices.ui.activitys;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -67,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onLongClick(View view) {
-        Intent admin = new Intent(this,AdminActivity.class);
-        startActivity(admin);
+        showLoginInAdminPanel();
         return true;
     }
 
@@ -79,5 +82,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (ml!= null) {
             mMainLabel.setText(ml);
         }
+    }
+
+    private void showLoginInAdminPanel(){
+        View v =  LayoutInflater.from(this).inflate(R.layout.admin_panel_pasword,null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Пароль на вход в панель администратора")
+                .setView(v)
+                .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent admin = new Intent(MainActivity.this,AdminActivity.class);
+                        startActivity(admin);
+                    }
+                })
+                .setNegativeButton(R.string.button_cancel,null)
+                .create();
+        builder.show();
     }
 }
