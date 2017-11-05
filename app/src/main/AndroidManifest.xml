@@ -44,6 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ui.activitys.InsEditServiceActivity"
+                  android:windowSoftInputMode="adjustPan"
                   android:screenOrientation="landscape">
         </activity>
     </application>

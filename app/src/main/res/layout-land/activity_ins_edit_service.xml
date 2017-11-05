@@ -48,9 +48,9 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/ti_1"
-        >
+        android:layout_above="@+id/view">
         <EditText
             android:id="@+id/body_serv"
             android:hint="Описание услуги"
@@ -67,7 +67,8 @@
     <android.support.design.widget.TextInputLayout
         android:layout_above="@+id/save_serv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/view">
         <EditText
             android:id="@+id/price_serv"
             android:hint="Цена на услугу"
