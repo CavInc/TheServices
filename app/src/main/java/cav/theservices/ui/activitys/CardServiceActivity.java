@@ -3,6 +3,7 @@ package cav.theservices.ui.activitys;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import cav.theservices.utils.ConstantManager;
 
 public class CardServiceActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String TAG = "CSA";
     private DataManager mDataManager;
     private ServiceClientModel mModel;
 
@@ -67,6 +69,7 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.card_button) {
+            Log.d(TAG,"SEND DEMAND");
 
         }
     }

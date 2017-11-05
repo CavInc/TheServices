@@ -9,5 +9,8 @@
     <dimen name="main_grid_padding">32dp</dimen>
 
     <dimen name="main_grid_img_heigth">132px</dimen>
+    <dimen name="spasing_img_ms">8dp</dimen>
+
+    <dimen name="spacing_size_16">16dp</dimen>
 
 </resources>

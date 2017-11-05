@@ -85,7 +85,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         Log.d(TAG,"TAP");
         if (view.getId() == R.id.ms_lv_6){
-
+            start += offset;
+            setDataLang();
         } else {
             Intent intent = new Intent(this,CardServiceActivity.class);
             switch (view.getId()){

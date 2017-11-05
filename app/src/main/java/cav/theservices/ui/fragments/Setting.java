@@ -22,6 +22,8 @@ public class Setting extends Fragment {
 
     private Switch mAppMode;
     private EditText mMainLabel;
+    private EditText mComandServer;
+    private Switch mFullScreen;
 
     @Nullable
     @Override
@@ -30,6 +32,10 @@ public class Setting extends Fragment {
         mDataManager = DataManager.getInstance();
 
         mAppMode = (Switch) view.findViewById(R.id.setting_app_mode);
+        mFullScreen = (Switch) view.findViewById(R.id.setting_full_screen);
+
+        mComandServer = (EditText) view.findViewById(R.id.setting_com_serv);
+        mComandServer.addTextChangedListener(mComandServerListener);
 
         mMainLabel = (EditText) view.findViewById(R.id.setting_main_label);
         mMainLabel.addTextChangedListener(mELW);
@@ -41,7 +47,7 @@ public class Setting extends Fragment {
     public void onStart() {
         super.onStart();
         String lx = mDataManager.getPreferenseManager().getMainScreenLabel();
-        if (lx.length() != 0 ) {
+        if (lx != null && lx.length() != 0 ) {
             mMainLabel.setText(lx);
         }
     }
@@ -60,6 +66,23 @@ public class Setting extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
             mDataManager.getPreferenseManager().setMainScreenLabel(editable.toString());
+        }
+    };
+
+    TextWatcher mComandServerListener = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            mDataManager.getPreferenseManager().setCommandServerUrl(editable.toString());
         }
     };
 

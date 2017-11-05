@@ -7,6 +7,7 @@ import cav.theservices.utils.TheServiceApp;
 
 public class PreferenseManager {
     private static final String MAIN_SCREEN_LABEL = "MAIN_SCREEN_LABEL";
+    private static final String COMMAND_SERVER = "COMMAND_SERVER";
     private SharedPreferences mSharedPreferences;
 
     public PreferenseManager() {
@@ -36,5 +37,16 @@ public class PreferenseManager {
         editor.putString(MAIN_SCREEN_LABEL,label);
         editor.apply();
     }
+
+    public String getComandServerUrl(){
+        return mSharedPreferences.getString(COMMAND_SERVER,null);
+    }
+
+    public void setCommandServerUrl(String url){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(COMMAND_SERVER,url);
+        editor.apply();
+    }
+
 
 }

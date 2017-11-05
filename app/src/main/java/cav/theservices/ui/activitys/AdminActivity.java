@@ -12,19 +12,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import cav.theservices.R;
 import cav.theservices.ui.fragments.ServiceListFragment;
 import cav.theservices.ui.fragments.ServiceMonitorFragment;
 import cav.theservices.ui.fragments.Setting;
 
-public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        View.OnClickListener {
     private Toolbar mToolbar;
     private DrawerLayout mNavigationDrawer;
 
     private Fragment mServiceMonitor;
     private Fragment mServiceList;
     private Fragment mSetting;
+
+    private Button mMonitorBt;
+    private Button mServiceBt;
+    private Button mSettingBt;
+
+    public AdminActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +48,17 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         mServiceList = new ServiceListFragment();
         mSetting = new Setting();
 
-       setupToolBar();
-       setupDrower();
+        mMonitorBt = (Button) findViewById(R.id.admin_monitor);
+        mServiceBt = (Button) findViewById(R.id.admin_service);
+        mSettingBt = (Button) findViewById(R.id.admin_setting);
+
+        mMonitorBt.setOnClickListener(this);
+        mServiceBt.setOnClickListener(this);
+        mSettingBt.setOnClickListener(this);
+
+        setupToolBar();
+        setupDrower();
+        changeFragment(mServiceMonitor);
     }
 
     private void setupDrower() {
@@ -87,5 +106,28 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frgmCont,fragment).commit();
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.admin_monitor:
+                setingTitle("Наблюдение");
+                changeFragment(mServiceMonitor);
+                break;
+            case R.id.admin_service:
+                setingTitle("Услуги");
+                changeFragment(mServiceList);
+                break;
+            case R.id.admin_setting:
+                setingTitle("Настройки");
+                changeFragment(mSetting);
+                break;
+        }
+
+    }
+
+    private void setingTitle(String title){
+        mToolbar.setTitle(title);
     }
 }

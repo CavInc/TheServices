@@ -46,7 +46,7 @@
                 android:paddingBottom="@dimen/main_grid_padding">
                 <ImageView
                     android:id="@+id/ms_img1"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/main_grid_img_heigth"/>
@@ -74,7 +74,7 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ms_img2"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/main_grid_img_heigth"/>
@@ -101,7 +101,7 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ms_img3"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/main_grid_img_heigth"/>
@@ -132,7 +132,7 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ms_img4"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/main_grid_img_heigth"/>
@@ -160,7 +160,7 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ms_img5"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/main_grid_img_heigth"/>
@@ -186,7 +186,7 @@
                 android:paddingBottom="@dimen/main_grid_padding"
                 android:layout_weight="1">
                 <ImageView
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spasing_img_ms"
                     android:layout_gravity="center"
                     android:id="@+id/ms_img6"
                     android:src="@drawable/ic_content_paste_black_24dp"
