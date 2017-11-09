@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.networks.Request;
 import cav.theservices.utils.ConstantManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,View.OnLongClickListener {
@@ -82,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (ml!= null) {
             mMainLabel.setText(ml);
         }
+
+        // добавить проверку на сеть и прочеее
+        Request request = new Request();
+        request.registry("0000000000",ConstantManager.ADMIN_MODE);
     }
 
     private void showLoginInAdminPanel(){
