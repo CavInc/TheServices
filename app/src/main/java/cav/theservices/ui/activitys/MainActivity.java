@@ -85,8 +85,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // добавить проверку на сеть и прочеее
-        Request request = new Request();
-        request.registry("0000000000",ConstantManager.ADMIN_MODE);
+        registry();
+    }
+
+
+    private void registry(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Request request = new Request();
+                request.registry("0000000000",ConstantManager.ADMIN_MODE);
+            }
+        }).start();
+
     }
 
     private void showLoginInAdminPanel(){
