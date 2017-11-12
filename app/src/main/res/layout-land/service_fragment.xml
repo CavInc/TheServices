@@ -35,7 +35,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/setting_main_label"
-            android:hint="Текст на гравном экране"
+            android:hint="Текст на главном экране"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </android.support.design.widget.TextInputLayout>
@@ -45,9 +45,19 @@
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/setting_admin_pass"
-            android:hint="Пароль"
+            android:hint="Пароль на вход в админ панель"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/setting_name_device"
+            android:hint="Имя устройства"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

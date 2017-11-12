@@ -9,7 +9,9 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -25,6 +27,8 @@ public class Setting extends Fragment {
     private EditText mComandServer;
     private Switch mFullScreen;
     private EditText mAdmimPass;
+
+    private EditText mDeviceName;
 
     @Nullable
     @Override
@@ -43,6 +47,14 @@ public class Setting extends Fragment {
 
         mAdmimPass = (EditText) view.findViewById(R.id.setting_admin_pass);
         mAdmimPass.addTextChangedListener(mPasswatcer);
+
+        mDeviceName = (EditText) view.findViewById(R.id.setting_name_device);
+        // заполняем поля
+        mDeviceName.setText(mDataManager.getPreferenseManager().getNameDevice());
+        mDeviceName.addTextChangedListener(mDeviceNameWatcher);
+
+        mAppMode.setChecked(mDataManager.getPreferenseManager().getAppMode());
+        mAppMode.setOnCheckedChangeListener(mAppChgListener);
 
         return view;
     }
@@ -104,6 +116,31 @@ public class Setting extends Fragment {
         @Override
         public void afterTextChanged(Editable editable) {
             mDataManager.getPreferenseManager().setAdminPassword(editable.toString());
+        }
+    };
+
+    TextWatcher mDeviceNameWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+            mDataManager.getPreferenseManager().setNameDevice(editable.toString());
+        }
+    };
+
+    CompoundButton.OnCheckedChangeListener mAppChgListener = new CompoundButton.OnCheckedChangeListener(){
+
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            mDataManager.getPreferenseManager().setAppMode(b);
         }
     };
 

@@ -11,6 +11,7 @@ public class PreferenseManager {
     private static final String APP_MODE = "APP_MODE";
     private static final String FULL_SCREEN = "FULL_SCREEN";
     private static final String ADMIN_PASSWORD = "ADMIN_PASSWORD";
+    private static final String DEVICE_NAME = "DEVICE_NAME";
     private SharedPreferences mSharedPreferences;
 
     public PreferenseManager() {
@@ -83,6 +84,16 @@ public class PreferenseManager {
     public void setAdminPassword(String password){
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(ADMIN_PASSWORD,password);
+        editor.apply();
+    }
+
+    // Имя устройства
+    public String getNameDevice() {
+        return mSharedPreferences.getString(DEVICE_NAME,null);
+    }
+    public void setNameDevice(String name) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putString(DEVICE_NAME,name);
         editor.apply();
     }
 

@@ -34,17 +34,18 @@ public class Request {
         mHttpClient = new DefaultHttpClient();
         mDataManager = DataManager.getInstance();
         BASE_URL = mDataManager.getPreferenseManager().getComandServerUrl();
-        if (BASE_URL == null) {
+        if (BASE_URL == null || BASE_URL.length() == 0) {
             BASE_URL = "http://45.62.122.33:8080/";
         }
     }
 
-    public void registry(String deviceId,int deviceMode){
+    public void registry(String deviceId,int deviceMode,String deviceName){
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_REGISTRY);
         post.addHeader("Accept", "application/json");
         List nameValuePairs = new ArrayList(2);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
-        nameValuePairs.add(new BasicNameValuePair("deviceName",String.valueOf(deviceMode)));
+        nameValuePairs.add(new BasicNameValuePair("deviceMode",String.valueOf(deviceMode)));
+        nameValuePairs.add(new BasicNameValuePair("deviceName",deviceName));
 
         try {
             post.setEntity(new UrlEncodedFormEntity(nameValuePairs));

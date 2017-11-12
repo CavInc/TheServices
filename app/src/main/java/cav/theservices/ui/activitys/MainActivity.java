@@ -94,7 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void run() {
                 Request request = new Request();
-                request.registry("0000000000",ConstantManager.ADMIN_MODE);
+                request.registry("0000000000",
+                        ConstantManager.ADMIN_MODE,
+                        mDataManager.getPreferenseManager().getNameDevice());
             }
         }).start();
 
