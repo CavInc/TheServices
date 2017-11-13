@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientModel;
+import cav.theservices.data.networks.Request;
 import cav.theservices.utils.ConstantManager;
 
 public class CardServiceActivity extends AppCompatActivity implements View.OnClickListener{
@@ -32,6 +33,8 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
 
     private Button mSendButton;
 
+    private int mRecordID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +42,10 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
 
         mDataManager = DataManager.getInstance();
 
-        int id = getIntent().getIntExtra(ConstantManager.SERVICE_ID,-1); // id записи
+        mRecordID = getIntent().getIntExtra(ConstantManager.SERVICE_ID,-1); // id записи
         int lang = getIntent().getIntExtra(ConstantManager.SELECT_LANG,1); // id языка
 
-        mModel = mDataManager.getOneCard(id,lang);
+        mModel = mDataManager.getOneCard(mRecordID,lang);
 
         mBigImage = (ImageView) findViewById(R.id.card_img);
         mTitle  = (TextView) findViewById(R.id.card_title);
@@ -70,7 +73,13 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if (view.getId() == R.id.card_button) {
             Log.d(TAG,"SEND DEMAND");
-
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Request request = new Request();
+                    request.sendDemand(mRecordID);
+                }
+            }).start();
         }
     }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.DeviceModel;
 import cav.theservices.utils.ConstantManager;
 
 @SuppressWarnings({"deprecation"})
@@ -42,7 +43,7 @@ public class Request {
     public void registry(String deviceId,int deviceMode,String deviceName){
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_REGISTRY);
         post.addHeader("Accept", "application/json");
-        List nameValuePairs = new ArrayList(2);
+        List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
         nameValuePairs.add(new BasicNameValuePair("deviceMode",String.valueOf(deviceMode)));
         nameValuePairs.add(new BasicNameValuePair("deviceName",deviceName));
@@ -66,5 +67,44 @@ public class Request {
         }
 
     }
+
+    // оправляем заказ на сервер.
+    public void sendDemand(String deviceId,int demandID){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEMAND);
+        post.addHeader("Accept", "application/json");
+        List nameValuePairs = new ArrayList(2);
+        nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
+        nameValuePairs.add(new BasicNameValuePair("demandID",String.valueOf(demandID)));
+
+
+        try {
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            String response = mHttpClient.execute(post,new BasicResponseHandler());
+            Log.d(TAG,"OK");
+            Log.d(TAG, response);
+            jObj = new JSONObject(response);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // запрос всех устройств зарегестрированных
+    public ArrayList<DeviceModel> getAllDevice(){
+        ArrayList<DeviceModel> rec = new ArrayList<>();
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_ALLDEVICE);
+        post.addHeader("Accept", "application/json");
+        List nameValuePairs = new ArrayList(1);
+
+        return rec;
+    }
+
 
 }

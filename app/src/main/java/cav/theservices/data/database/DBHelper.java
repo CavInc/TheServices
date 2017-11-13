@@ -40,8 +40,11 @@ public class DBHelper extends SQLiteOpenHelper {
                     " body text,"+
                     " primary key(id,lang_id))");
 
+            // список устройств (используется в админ режиме)
             db.execSQL("create table "+DEVICE_LIST_TABLE+" ("+
-                    " device_id text not null primary key)");
+                    " device_id text not null primary key,"+
+                    " deviceMode integer,"+"" +
+                    " deviceName text)");
 
         }
     }
