@@ -34,6 +34,7 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
     private Button mSendButton;
 
     private int mRecordID;
+    private String mDeviceID = "0000000000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_card_service);
 
         mDataManager = DataManager.getInstance();
+
 
         mRecordID = getIntent().getIntExtra(ConstantManager.SERVICE_ID,-1); // id записи
         int lang = getIntent().getIntExtra(ConstantManager.SELECT_LANG,1); // id языка
@@ -77,7 +79,7 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void run() {
                     Request request = new Request();
-                    request.sendDemand(mRecordID);
+                    request.sendDemand(mDeviceID,mRecordID);
                 }
             }).start();
         }

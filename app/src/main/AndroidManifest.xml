@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cav.theservices">
+<manifest package="cav.theservices"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -22,8 +22,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activitys.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -32,24 +32,31 @@
         </activity>
         <activity
             android:name=".ui.activitys.CardServiceActivity"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:screenOrientation="landscape">
+            android:windowSoftInputMode="adjustPan|stateHidden">
         </activity>
         <activity
             android:name=".ui.activitys.MainServiceActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".ui.activitys.AdminActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ui.activitys.InsEditServiceActivity"
-                  android:windowSoftInputMode="adjustPan"
-                  android:screenOrientation="landscape">
+        <activity
+            android:name=".ui.activitys.InsEditServiceActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan">
         </activity>
+
+        <receiver
+            android:name=".services.AlarmReciver"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
     </application>
 
 </manifest>
