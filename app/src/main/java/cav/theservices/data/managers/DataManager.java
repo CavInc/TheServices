@@ -2,6 +2,9 @@ package cav.theservices.data.managers;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.provider.Settings;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,20 @@ public class DataManager {
     public DBConnect getDB() {
         return mDB;
     }
+
+    // проверяем включен ли интернетик
+    public boolean isOnline(){
+        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);;
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    /*
+    // запрос данных устройства
+    public String getAndroidID(){
+        return  Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+    */
 
     // ===================== некоторые запросы к базе ====================
     public ArrayList<ServiceClientEditModel> getServiceListEdit(){

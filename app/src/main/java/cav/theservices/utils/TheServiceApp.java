@@ -22,6 +22,9 @@ public class TheServiceApp extends Application {
             TelephonyManager telephonyManager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
             androidID = telephonyManager.getDeviceId();
         }
+        SharedPreferences.Editor editor = sSharedPreferences.edit();
+        editor.putString(ConstantManager.DEVICE_ID,androidID);
+        editor.apply();
     }
 
     public static SharedPreferences getSharedPreferences() {

@@ -12,6 +12,7 @@ public class PreferenseManager {
     private static final String FULL_SCREEN = "FULL_SCREEN";
     private static final String ADMIN_PASSWORD = "ADMIN_PASSWORD";
     private static final String DEVICE_NAME = "DEVICE_NAME";
+    private static final String PERIOD_REQUEST = "PERIOD_REQUEST";
     private SharedPreferences mSharedPreferences;
 
     public PreferenseManager() {
@@ -20,6 +21,11 @@ public class PreferenseManager {
 
     public SharedPreferences getSharedPreferences() {
         return mSharedPreferences;
+    }
+
+    // сохраненный ID
+    public String getAndroidID(){
+        return mSharedPreferences.getString(ConstantManager.DEVICE_ID,null);
     }
 
     // выбранный язык
@@ -94,6 +100,17 @@ public class PreferenseManager {
     public void setNameDevice(String name) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putString(DEVICE_NAME,name);
+        editor.apply();
+    }
+
+    // период опроса командного сервера
+    public int getPeriodRequest(){
+        return mSharedPreferences.getInt(PERIOD_REQUEST,10);
+    }
+
+    public void setPeriodRequest(int period){
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putInt(PERIOD_REQUEST,period);
         editor.apply();
     }
 

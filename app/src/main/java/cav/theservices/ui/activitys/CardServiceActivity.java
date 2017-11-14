@@ -46,6 +46,7 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
 
         mRecordID = getIntent().getIntExtra(ConstantManager.SERVICE_ID,-1); // id записи
         int lang = getIntent().getIntExtra(ConstantManager.SELECT_LANG,1); // id языка
+        mDeviceID = mDataManager.getPreferenseManager().getAndroidID();
 
         mModel = mDataManager.getOneCard(mRecordID,lang);
 
