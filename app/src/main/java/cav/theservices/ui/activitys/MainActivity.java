@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import cav.theservices.utils.ConstantManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,View.OnLongClickListener {
 
+    private static final String TAG = "MAINAP";
     private ImageView mLogo;
     private Button mLangButton1;
     private Button mLangButton2;
@@ -85,8 +87,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // добавить проверку на сеть и прочеее
-        registry();
+        if (mDataManager.isOnline()) {
+            registry();
+        }
+        if (mDataManager.getPreferenseManager().getAppMode()) {
+            Log.d(TAG,"ADMIN MODE");
+            startAdmin();
+        }
     }
+
+
 
 
     private void registry(){
@@ -111,12 +121,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent admin = new Intent(MainActivity.this,AdminActivity.class);
-                        startActivity(admin);
+                        startAdmin();
                     }
                 })
                 .setNegativeButton(R.string.button_cancel,null)
                 .create();
         builder.show();
+    }
+
+    private void startAdmin() {
+        Intent admin = new Intent(MainActivity.this,AdminActivity.class);
+        startActivity(admin);
     }
 }

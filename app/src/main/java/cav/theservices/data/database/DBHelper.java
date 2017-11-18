@@ -10,6 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String SERVICE_HEAD_TABLE = "service_head";
     public static final String SERVICE_SPEC_TABLE = "service_spec";
     public static final String DEVICE_LIST_TABLE = "device_list";
+    public static final String DEMAND_LIST_TABLE = "demand_list";
 
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -45,6 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " device_id text not null primary key,"+
                     " deviceMode integer,"+"" +
                     " deviceName text)");
+
 
         }
     }
