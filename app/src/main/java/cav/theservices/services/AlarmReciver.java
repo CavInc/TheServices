@@ -8,6 +8,8 @@ import android.content.Intent;
   для опроса по времени командного сервера
  */
 public class AlarmReciver extends BroadcastReceiver {
+    private Context mContext;
+
     public AlarmReciver() {
     }
 

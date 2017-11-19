@@ -80,5 +80,16 @@ public class DBConnect {
         return database.rawQuery(sql,null);
     }
 
+    // добавили устройство
+    public void addDevices(String deviceid,int devicemode,String devicename){
+        open();
+        ContentValues values = new ContentValues();
+        values.put("device_id",deviceid);
+        values.put("deviceMode",devicemode);
+        values.put("deviceName",devicename);
+        database.insertWithOnConflict(DBHelper.DEVICE_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
+        close();
+
+    }
 
 }

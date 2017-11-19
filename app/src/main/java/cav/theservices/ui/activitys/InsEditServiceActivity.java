@@ -48,6 +48,7 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         ArrayAdapter<String> spAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,spData);
         spAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(spAdapter);
+        mSpinner.setSelection(1);
     }
 
     @Override

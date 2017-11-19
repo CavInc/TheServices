@@ -57,6 +57,12 @@
             android:enabled="true"
             android:exported="false">
         </receiver>
+
+        <service
+            android:name=".services.AdminGetRequestService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
