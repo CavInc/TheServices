@@ -32,7 +32,7 @@ public class DBConnect {
     //-------------------- Запросы к базе ------------------------------
 
     // добавим услугу
-    public void addNewService(ServiceEditModel data){
+    public int addNewService(ServiceEditModel data){
         open();
         ContentValues values = new ContentValues();
         values.put("icon_file",data.getPhoto());
@@ -48,6 +48,7 @@ public class DBConnect {
             database.insert(DBHelper.SERVICE_SPEC_TABLE,null,values);
         }
         close();
+        return res_id;
     }
 
     public Cursor getListService(int lang){
