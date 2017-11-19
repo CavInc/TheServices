@@ -80,7 +80,8 @@ public class CardServiceActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void run() {
                     Request request = new Request();
-                    request.sendDemand(mDeviceID,mRecordID);
+                    request.sendDemand(mDeviceID,mRecordID,mComment.getText().toString());
+                    finish();
                 }
             }).start();
         }

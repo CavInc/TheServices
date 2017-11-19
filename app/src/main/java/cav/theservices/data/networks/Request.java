@@ -92,19 +92,21 @@ public class Request {
     }
 
     // оправляем заказ на сервер.
-    public void sendDemand(String deviceId,int demandID){
+    public void sendDemand(String deviceId,int demandID,String comment){
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEMAND);
         post.addHeader("Accept", "application/json");
         post.addHeader("Content-Type", "application/json; charset=utf-8");
-        List nameValuePairs = new ArrayList(2);
+        List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
         nameValuePairs.add(new BasicNameValuePair("demandID",String.valueOf(demandID)));
+        nameValuePairs.add(new BasicNameValuePair("demandComment",comment));
 
 
         try {
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            return;
         }
 
         try {
@@ -115,8 +117,10 @@ public class Request {
 
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         } catch (JSONException e) {
             e.printStackTrace();
+            return;
         }
     }
 
@@ -147,8 +151,8 @@ public class Request {
                     Log.d(TAG,lx.getString("deviceID"));
                     Log.d(TAG,lx.getString("deviceName"));
                     mDataManager.getDB().addDevices(lx.getString("deviceID"),lx.getInt("deviceMode"),lx.getString("deviceName"));
+                    rec.add(new DeviceModel(lx.getString("deviceID"),lx.getInt("deviceMode"),lx.getString("deviceName")));
                 }
-
             }
 
         } catch (IOException e) {
@@ -158,6 +162,11 @@ public class Request {
         }
 
         return rec;
+    }
+
+    // сервис на сервер.
+    private void sendService(){
+
     }
 
 
