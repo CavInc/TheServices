@@ -9,6 +9,7 @@ import android.provider.Settings;
 import java.util.ArrayList;
 
 import cav.theservices.data.database.DBConnect;
+import cav.theservices.data.models.DeviceModel;
 import cav.theservices.data.models.ServiceClientEditModel;
 import cav.theservices.data.models.ServiceClientModel;
 import cav.theservices.utils.TheServiceApp;
@@ -103,5 +104,20 @@ public class DataManager {
         mDB.close();
 
         return model;
+    }
+
+    public ArrayList<DeviceModel> getAllDevice(){
+        ArrayList<DeviceModel> rec = new ArrayList<>();
+        mDB.open();
+        Cursor cursor = mDB.getAllDevices();
+        while (cursor.moveToNext()){
+            rec.add(new DeviceModel(
+                    cursor.getString(cursor.getColumnIndex("device_id")),
+                    cursor.getInt(cursor.getColumnIndex("deviceMode")),
+                    cursor.getString(cursor.getColumnIndex("deviceName"))
+            ));
+        }
+        mDB.close();
+        return rec;
     }
 }

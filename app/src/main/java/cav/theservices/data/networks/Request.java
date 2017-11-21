@@ -53,8 +53,8 @@ public class Request {
         mDataManager = DataManager.getInstance();
         BASE_URL = mDataManager.getPreferenseManager().getComandServerUrl();
         if (BASE_URL == null || BASE_URL.length() == 0) {
-            //BASE_URL = "http://45.62.122.33:8080/";
-            BASE_URL = "http://192.168.56.33:8081/";
+            BASE_URL = "http://45.62.122.33:8080/";
+           // BASE_URL = "http://192.168.56.33:8081/";
         }
     }
 

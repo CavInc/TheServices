@@ -93,4 +93,9 @@ public class DBConnect {
 
     }
 
+    // читаем список устройств
+    public  Cursor getAllDevices(){
+        return database.query(DBHelper.DEVICE_LIST_TABLE,new String[]{"device_id","deviceName","deviceMode"},null,null,null,null,"device_id");
+    }
+
 }
