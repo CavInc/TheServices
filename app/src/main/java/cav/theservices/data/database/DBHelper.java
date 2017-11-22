@@ -34,7 +34,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " icon_file text,"+
                     " price numeric default 0,"+
                     " big_img_file text,"+
-                    " status integer defailt 0)"); // 0 - локальный 1 - передан на сервер 2 - не передан на сервер нужно обработать.
+                    " status integer default 0)"); // 0 - локальный 1 - передан на сервер 2 - не передан на сервер нужно обработать.
 
             db.execSQL("create table "+SERVICE_SPEC_TABLE+" (id integer not null,"+
                     " lang_id integer,"+ //0 - украинский 1 - русский  2 -анлийский
@@ -49,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " deviceName text)");
 
             // полученные заявки
-            db.execSQL("create table "+DEMAND_LIST_TABLE+"()");
+          //  db.execSQL("create table "+DEMAND_LIST_TABLE+"()");
 
 
         }
