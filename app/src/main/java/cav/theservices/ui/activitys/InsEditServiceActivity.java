@@ -15,6 +15,7 @@ import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
+import cav.theservices.utils.ConstantManager;
 
 public class InsEditServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,6 +71,13 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
 
         ServiceEditModel data = new ServiceEditModel(price," "," ",rec);
         mDataManager.getDB().addNewService(data);
+
+        // если в режиме администратора то передаем данные на сеть
+        if (mDataManager.getPreferenseManager().getAppMode()) {
+            if (mDataManager.isOnline()){
+
+            }
+        }
 
         Intent answerIntent = new Intent();
         setResult(RESULT_OK,answerIntent);
