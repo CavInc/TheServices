@@ -1,6 +1,7 @@
 package cav.theservices.ui.activitys;
 
 import android.content.Intent;
+import android.net.http.RequestQueue;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
+import cav.theservices.data.networks.Request;
 import cav.theservices.utils.ConstantManager;
 
 public class InsEditServiceActivity extends AppCompatActivity implements View.OnClickListener {
@@ -69,13 +71,20 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         ArrayList<LangDataModel> rec = new ArrayList<>();
         rec.add(ld);
 
-        ServiceEditModel data = new ServiceEditModel(price," "," ",rec);
-        mDataManager.getDB().addNewService(data);
+        final ServiceEditModel data = new ServiceEditModel(price," "," ",rec);
+        int rec_id = mDataManager.getDB().addNewService(data);
+        data.setId(rec_id);
 
         // если в режиме администратора то передаем данные на сеть
         if (mDataManager.getPreferenseManager().getAppMode()) {
             if (mDataManager.isOnline()){
-
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Request request = new Request();
+                        request.sendService(data);
+                    }
+                }).start();
             }
         }
 

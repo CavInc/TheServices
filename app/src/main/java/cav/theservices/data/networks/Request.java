@@ -30,6 +30,7 @@ import java.util.List;
 
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.DeviceModel;
+import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.utils.ConstantManager;
 
@@ -166,8 +167,56 @@ public class Request {
     }
 
     // сервис на сервер.
-    private void sendService(ServiceEditModel data){
+    public void sendService(ServiceEditModel data){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_SERVICE);
+        post.addHeader("Accept", "application/json");
+        post.addHeader("Content-Type", "application/json; charset=utf-8");
 
+        List nameValuePairs = new ArrayList(3);
+        nameValuePairs.add(new BasicNameValuePair("serviceID",String.valueOf(data.getId())));
+        nameValuePairs.add(new BasicNameValuePair("servicePrice",String.valueOf(data.getPrice())));
+
+        ArrayList<LangDataModel> rec_data = data.getData();
+        nameValuePairs.add(new BasicNameValuePair("serviceRec",getJSONLangDataModel(rec_data)));
+
+        try {
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            HttpResponse response = mHttpClient.execute(post);
+            String result = EntityUtils.toString(response.getEntity());
+            Log.d(TAG,result);
+            jObj = new JSONObject(result);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private String getJSONLangDataModel (ArrayList<LangDataModel>  data){
+        JSONObject bot = new JSONObject();
+        try {
+            int i =0;
+            for (LangDataModel l : data) {
+                JSONObject rx = new JSONObject();
+                rx.put("langID",l.getLang());
+                rx.put("title",l.getnTitle());
+                rx.put("body",l.getBody());
+                bot.put("REC "+i,rx);
+                i+=1;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return bot.toString();
     }
 
 

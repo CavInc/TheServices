@@ -12,7 +12,7 @@ public interface ConstantManager {
 
     String URL_REGISTRY = "api/registry";
     String URL_DEMAND = "api/newdemand";
-    String URL_SERVICE = "api/newservie";
+    String URL_SERVICE = "api/newservice";
     String URl_ALLSERVICE = "api/allservice";
     String URL_ALLDEVICE = "api/alldevices";
 
