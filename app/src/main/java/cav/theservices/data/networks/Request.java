@@ -30,6 +30,7 @@ import java.util.List;
 
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.DeviceModel;
+import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.utils.ConstantManager;
 
 @SuppressWarnings({"deprecation"})
@@ -165,7 +166,7 @@ public class Request {
     }
 
     // сервис на сервер.
-    private void sendService(){
+    private void sendService(ServiceEditModel data){
 
     }
 
