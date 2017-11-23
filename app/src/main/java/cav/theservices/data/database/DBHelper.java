@@ -49,7 +49,12 @@ public class DBHelper extends SQLiteOpenHelper {
                     " deviceName text)");
 
             // полученные заявки
-          //  db.execSQL("create table "+DEMAND_LIST_TABLE+"()");
+            db.execSQL("create table "+DEMAND_LIST_TABLE+"("+
+                    "device_id text not null primary key,"+
+                    "service_id integer,"+
+                    "demand_date text,"+
+                    "status integer,"+
+                    "comment text)");
 
 
         }
