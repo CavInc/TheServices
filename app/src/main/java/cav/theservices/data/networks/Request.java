@@ -219,5 +219,42 @@ public class Request {
         return bot.toString();
     }
 
+    // Запрос всех сервисов
+    public void getAllService(){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URl_ALLSERVICE);
+        post.addHeader("Accept", "application/json");
+        post.addHeader("Content-Type", "application/json; charset=utf-8");
+
+
+        try {
+            HttpResponse response = mHttpClient.execute(post);
+            Header[] header = response.getAllHeaders();
+            for (int i=0;i<header.length;i++){
+                Log.d(TAG, String.valueOf(header[i]));
+            }
+
+            String result = EntityUtils.toString(response.getEntity());
+            Log.d(TAG,result);
+
+            jObj = new JSONObject(result);
+            if (jObj.has("status") && jObj.getString("status").equals("ok")){
+                //JSONObject jdata= (JSONObject)jObj.get("devices");
+                JSONArray jarr = jObj.getJSONArray("devices");
+                for (int i = 0;i < jarr.length();i++){
+                    JSONObject lx =  (JSONObject) jarr.get(i);
+                    Log.d(TAG,lx.toString());
+
+                    //rec.add(new DeviceModel(lx.getString("deviceID"),lx.getInt("deviceMode"),lx.getString("deviceName")));
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 }

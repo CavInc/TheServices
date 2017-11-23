@@ -20,6 +20,7 @@ import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientEditModel;
 import cav.theservices.ui.activitys.InsEditServiceActivity;
 import cav.theservices.ui.adapters.ServiceListAdapterEdit;
+import cav.theservices.ui.dialogs.EditDeleteDialog;
 
 public class ServiceListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener {
 
@@ -74,8 +75,15 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
 
     }
 
+    private int selectID;
+
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+        ServiceClientEditModel model = (ServiceClientEditModel) adapterView.getItemAtPosition(position);
+        selectID = model.getId();
+        EditDeleteDialog dialog = new EditDeleteDialog();
+        dialog.setEditDeleteListener(mEditDeleteListener);
+        dialog.show(getFragmentManager(),"ED");
         return true;
     }
 
@@ -85,4 +93,18 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
             updateUI();
         }
     }
+
+    EditDeleteDialog.EditDeleteListener mEditDeleteListener = new EditDeleteDialog.EditDeleteListener() {
+        @Override
+        public void selectItem(int rid) {
+            if (rid == R.id.dialog_del_item) {
+                //TODO сдеся удаление объекта пока без удаления на сервере.
+                mDataManager.getDB().delService(selectID);
+                updateUI();
+            }
+            if (rid == R.id.dialog_edit_item) {
+
+            }
+        }
+    };
 }

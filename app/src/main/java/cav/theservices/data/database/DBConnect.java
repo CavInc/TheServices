@@ -51,6 +51,14 @@ public class DBConnect {
         return res_id;
     }
 
+    // удалим
+    public void delService(int id){
+        open();
+        database.delete(DBHelper.SERVICE_HEAD_TABLE,"id="+id,null);
+        database.delete(DBHelper.SERVICE_SPEC_TABLE,"id="+id,null);
+        close();
+    }
+
     public Cursor getListService(int lang){
         String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
                 " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang;

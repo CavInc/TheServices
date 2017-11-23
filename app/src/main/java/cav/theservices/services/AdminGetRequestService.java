@@ -42,6 +42,7 @@ public class AdminGetRequestService extends Service {
                     Log.d("RS",l.getDeviceID()+" "+l.getDeviceText());
                 }
 
+                stopSelf();
             }
         }).start();
 
