@@ -17,6 +17,7 @@ import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientModel;
 import cav.theservices.data.models.ServiceEditModel;
+import cav.theservices.services.GetAllServiceService;
 import cav.theservices.utils.ConstantManager;
 
 public class MainServiceActivity extends AppCompatActivity implements View.OnClickListener {
@@ -76,6 +77,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         mTextViews[2] = (TextView) findViewById(R.id.ms_title_3);
         mTextViews[3] = (TextView) findViewById(R.id.ms_title_4);
         mTextViews[4] = (TextView) findViewById(R.id.ms_title_5);
+
+        getAllService();// тестовая для проверки
 
         setDataLang();
 
@@ -137,5 +140,11 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
             }
             i +=1;
         }
+    }
+
+    // тестовая для проверки
+    private void getAllService(){
+        Intent intent = new Intent(this, GetAllServiceService.class);
+        startService(intent);
     }
 }

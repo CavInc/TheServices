@@ -56,7 +56,8 @@ public class Request {
         BASE_URL = mDataManager.getPreferenseManager().getComandServerUrl();
         if (BASE_URL == null || BASE_URL.length() == 0) {
             BASE_URL = "http://45.62.122.33:8080/";
-           // BASE_URL = "http://192.168.56.33:8081/";
+           // BASE_URL = "http://192.168.1.23:5000/";
+          //  BASE_URL = "http://192.168.56.33:8081/";
         }
     }
 
@@ -203,6 +204,7 @@ public class Request {
 
     private String getJSONLangDataModel (ArrayList<LangDataModel>  data){
         JSONObject bot = new JSONObject();
+        JSONArray bt = new JSONArray();
         try {
             int i =0;
             for (LangDataModel l : data) {
@@ -210,13 +212,13 @@ public class Request {
                 rx.put("langID",l.getLang());
                 rx.put("title",l.getnTitle());
                 rx.put("body",l.getBody());
-                bot.put("REC "+i,rx);
+                bt.put(rx);
                 i+=1;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return bot.toString();
+        return bt.toString();
     }
 
     // Запрос всех сервисов
