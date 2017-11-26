@@ -63,7 +63,7 @@ public class Request {
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_REGISTRY);
 
         post.addHeader("Accept", "application/json");
-        //post.addHeader("Content-Type", "application/json; charset=utf-8");
+        //post.addHeader("Content-Type", "application/json; charset=utf-8"); // при urldecode и php работает криво
 
         List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
