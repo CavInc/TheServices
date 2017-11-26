@@ -52,9 +52,10 @@ public class Request {
         mDataManager = DataManager.getInstance();
         BASE_URL = mDataManager.getPreferenseManager().getComandServerUrl();
         if (BASE_URL == null || BASE_URL.length() == 0) {
-            BASE_URL = "http://45.62.122.33:8080/";
+            //BASE_URL = "http://45.62.122.33:8080/";
            // BASE_URL = "http://192.168.1.23:5000/";
           //  BASE_URL = "http://192.168.56.33:8081/";
+            BASE_URL = "http://kempir.com/scx/";
         }
     }
 
@@ -62,7 +63,7 @@ public class Request {
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_REGISTRY);
 
         post.addHeader("Accept", "application/json");
-        post.addHeader("Content-Type", "application/json; charset=utf-8");
+        //post.addHeader("Content-Type", "application/json; charset=utf-8");
 
         List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
@@ -186,6 +187,11 @@ public class Request {
 
         try {
             HttpResponse response = mHttpClient.execute(post);
+            Header[] header = response.getAllHeaders();
+            for (int i=0;i<header.length;i++){
+                Log.d(TAG, String.valueOf(header[i]));
+            }
+
             String result = EntityUtils.toString(response.getEntity());
             Log.d(TAG,result);
             jObj = new JSONObject(result);

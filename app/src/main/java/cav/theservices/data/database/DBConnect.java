@@ -51,6 +51,15 @@ public class DBConnect {
         return res_id;
     }
 
+    // меняем статуст
+    public void updateStateService(int id,int status){
+        open();
+        ContentValues values = new ContentValues();
+        values.put("status",status);
+        database.update(DBHelper.SERVICE_HEAD_TABLE,values,"id="+id,null);
+        close();
+    }
+
     // удалим
     public void delService(int id){
         open();

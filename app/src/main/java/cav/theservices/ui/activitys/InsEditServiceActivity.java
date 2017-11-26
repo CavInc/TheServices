@@ -119,11 +119,6 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         }
         langData.set(oldSelectLang,new LangDataModel(oldSelectLang,title,body));
 
-        //LangDataModel ld = new LangDataModel(1,title,body); // поменять
-
-        //ArrayList<LangDataModel> rec = new ArrayList<>();
-        //rec.add(ld);
-
         final ServiceEditModel data = new ServiceEditModel(price," "," ",langData);
         int rec_id = mDataManager.getDB().addNewService(data);
         data.setId(rec_id);
