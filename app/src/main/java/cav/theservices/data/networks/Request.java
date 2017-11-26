@@ -8,12 +8,10 @@ import org.apache.http.HttpVersion;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.DefaultedHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
@@ -25,7 +23,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import cav.theservices.data.managers.DataManager;
@@ -210,7 +207,7 @@ public class Request {
             for (LangDataModel l : data) {
                 JSONObject rx = new JSONObject();
                 rx.put("langID",l.getLang());
-                rx.put("title",l.getnTitle());
+                rx.put("title",l.getTitle());
                 rx.put("body",l.getBody());
                 bt.put(rx);
                 i+=1;

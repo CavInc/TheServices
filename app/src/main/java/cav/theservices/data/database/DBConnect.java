@@ -43,7 +43,7 @@ public class DBConnect {
             values.clear();
             values.put("id",res_id);
             values.put("lang_id",l.getLang());
-            values.put("title",l.getnTitle());
+            values.put("title",l.getTitle());
             values.put("body",l.getBody());
             database.insert(DBHelper.SERVICE_SPEC_TABLE,null,values);
         }

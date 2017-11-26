@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     " status integer default 0)"); // 0 - локальный 1 - передан на сервер 2 - не передан на сервер нужно обработать.
 
             db.execSQL("create table "+SERVICE_SPEC_TABLE+" (id integer not null,"+
-                    " lang_id integer,"+ //0 - украинский 1 - русский  2 -анлийский
+                    " lang_id integer not null,"+ //0 - украинский 1 - русский  2 -анлийский
                     " title text,"+
                     " body text,"+
                     " primary key(id,lang_id))");
