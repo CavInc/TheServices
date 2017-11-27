@@ -169,7 +169,7 @@ public class Request {
     public void sendService(ServiceEditModel data){
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_SERVICE);
         post.addHeader("Accept", "application/json");
-        post.addHeader("Content-Type", "application/json; charset=utf-8");
+        //post.addHeader("Content-Type", "application/json; charset=utf-8");
 
         List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("serviceID",String.valueOf(data.getId())));
