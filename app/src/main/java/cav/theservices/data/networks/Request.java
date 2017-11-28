@@ -225,7 +225,8 @@ public class Request {
     }
 
     // Запрос всех сервисов
-    public void getAllService(){
+    public ArrayList<ServiceEditModel> getAllService(){
+        ArrayList<ServiceEditModel> rec = new ArrayList<>();
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URl_ALLSERVICE);
         post.addHeader("Accept", "application/json");
         post.addHeader("Content-Type", "application/json; charset=utf-8");
@@ -242,23 +243,38 @@ public class Request {
             Log.d(TAG,result);
 
             jObj = new JSONObject(result);
+
+            ArrayList<LangDataModel> spec = new ArrayList<>();
+
             if (jObj.has("status") && jObj.getString("status").equals("ok")){
                 //JSONObject jdata= (JSONObject)jObj.get("devices");
-                JSONArray jarr = jObj.getJSONArray("devices");
+                JSONArray jarr = jObj.getJSONArray("services");
                 for (int i = 0;i < jarr.length();i++){
                     JSONObject lx =  (JSONObject) jarr.get(i);
                     Log.d(TAG,lx.toString());
-
-                    //rec.add(new DeviceModel(lx.getString("deviceID"),lx.getInt("deviceMode"),lx.getString("deviceName")));
+                    spec.clear();
+                    JSONArray jspec = lx.getJSONArray("serviceSpec");
+                    for (int j = 0; j< jspec.length();j++){
+                        Log.d(TAG,jspec.get(j).toString());
+                        JSONObject lm = (JSONObject) jspec.get(i);
+                        spec.add(new LangDataModel(
+                                lm.getInt("langID"),
+                                lm.getString("title"),
+                                lm.getString("body")
+                        ));
+                    }
+                    rec.add(new ServiceEditModel(lx.getInt("serviceID"),
+                            Float.parseFloat(lx.getString("servicePrice")),"","",spec));
                 }
             }
+
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        return rec;
     }
 
 
