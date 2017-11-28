@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
@@ -37,7 +38,12 @@ public class DBConnect {
         ContentValues values = new ContentValues();
         values.put("icon_file",data.getPhoto());
         values.put("price",data.getPrice());
-        int res_id = (int) database.insert(DBHelper.SERVICE_HEAD_TABLE,null,values);
+        Log.d("DB", String.valueOf(data.getId()));
+        if (data.getId() != -1) {
+            values.put("id",data.getId());
+        }
+
+        int res_id = (int) database.insertWithOnConflict(DBHelper.SERVICE_HEAD_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
 
         for (LangDataModel l:data.getData()){
             values.clear();

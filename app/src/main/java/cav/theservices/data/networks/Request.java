@@ -256,7 +256,7 @@ public class Request {
                     JSONArray jspec = lx.getJSONArray("serviceSpec");
                     for (int j = 0; j< jspec.length();j++){
                         Log.d(TAG,jspec.get(j).toString());
-                        JSONObject lm = (JSONObject) jspec.get(i);
+                        JSONObject lm = (JSONObject) jspec.get(j);
                         spec.add(new LangDataModel(
                                 lm.getInt("langID"),
                                 lm.getString("title"),

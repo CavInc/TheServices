@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ServiceEditModel{
-    private int mId;
+    private int mId = -1;
     private Float mPrice;
     private String mPhoto;
     private String mBigPhoto;

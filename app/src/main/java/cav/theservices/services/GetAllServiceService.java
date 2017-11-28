@@ -4,7 +4,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import java.util.ArrayList;
+
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.data.networks.Request;
 
 /**
@@ -35,7 +38,10 @@ public class GetAllServiceService extends Service {
             @Override
             public void run() {
                 Request request = new Request();
-                request.getAllService();
+                ArrayList<ServiceEditModel> serviceList = request.getAllService();
+                for (ServiceEditModel l : serviceList) {
+                    mDataManager.getDB().addNewService(l);
+                }
             }
         }).start();
     }
