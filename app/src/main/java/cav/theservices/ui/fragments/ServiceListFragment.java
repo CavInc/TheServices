@@ -26,6 +26,8 @@ import cav.theservices.utils.ConstantManager;
 public class ServiceListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener {
 
     private static final int NEW_RECORD = 100;
+    private static final int EDIT_RECORD = 101;
+
     private static final String TAG = "SLFAGMENT";
     private DataManager mDataManager;
 
@@ -97,6 +99,7 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
     }
 
     EditDeleteDialog.EditDeleteListener mEditDeleteListener = new EditDeleteDialog.EditDeleteListener() {
+
         @Override
         public void selectItem(int rid) {
             if (rid == R.id.dialog_del_item) {
@@ -107,7 +110,8 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
             if (rid == R.id.dialog_edit_item) {
                 Intent intent = new Intent(getActivity(),InsEditServiceActivity.class);
                 intent.putExtra(ConstantManager.MODE_WORK,ConstantManager.SERVICE_EDIT);
-
+                intent.putExtra(ConstantManager.SELECTED_ID,selectID);
+                startActivityForResult(intent,EDIT_RECORD);
             }
         }
     };

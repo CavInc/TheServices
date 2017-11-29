@@ -19,6 +19,7 @@ import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.data.networks.Request;
+import cav.theservices.utils.ConstantManager;
 
 public class InsEditServiceActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,7 +67,26 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
         mSpinner.setAdapter(spAdapter);
         mSpinner.setSelection(1);
 
+        mode = getIntent().getIntExtra(ConstantManager.MODE_WORK,-1);
+        if (mode == ConstantManager.SERVICE_EDIT) {
+            int id = getIntent().getIntExtra(ConstantManager.SELECTED_ID,-1);
+            loadData(id);
+
+        }
+
         setSpinerListener();
+    }
+
+    // загружаем данные из базы
+    private void loadData(int id) {
+        ServiceEditModel model = mDataManager.getDB().getOneFullCard(id);
+        mPrice.setText(model.getPhoto());
+        for (LangDataModel l:model.getData()){
+            langData.set(l.getLang(),
+                    new LangDataModel(l.getLang(),l.getTitle(),l.getBody()));
+        }
+        // mTitleServ.getText().toString(),mBodyServ.getText().toString()
+
     }
 
     private void setSpinerListener() {

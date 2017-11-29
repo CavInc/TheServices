@@ -25,4 +25,5 @@ public interface ConstantManager {
     int ALARM_GETSERVICE = 110;
 
     String MODE_WORK = "MODE_WORK";
+    String SELECTED_ID = "SELECTED_ID";
 }

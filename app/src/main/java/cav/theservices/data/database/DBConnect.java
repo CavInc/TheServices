@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
 
@@ -102,6 +104,29 @@ public class DBConnect {
         String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body,sh.big_img_file from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
                 " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+" where sh.id="+id;
         return database.rawQuery(sql,null);
+    }
+
+    // возвращаем 1 карточку для редактирования
+    public ServiceEditModel getOneFullCard(int id) {
+        ArrayList<LangDataModel> spec = new ArrayList<>();
+        open();
+        Cursor cursor = database.query(DBHelper.SERVICE_SPEC_TABLE,
+                new String[]{"lang_id","title","body"},"id="+id,null,null,null,null);
+        while (cursor.moveToNext()){
+            spec.add(new LangDataModel(
+                    cursor.getInt(cursor.getColumnIndex("lang_id")),
+                    cursor.getString(cursor.getColumnIndex("title")),
+                    cursor.getString(cursor.getColumnIndex("body"))
+            ));
+        }
+
+        cursor = database.query(DBHelper.SERVICE_HEAD_TABLE,new String[]{"id","price"},"id="+id,null,null,null,null);
+        cursor.moveToFirst();
+        Float price = cursor.getFloat(cursor.getColumnIndex("price"));
+
+        close();
+        ServiceEditModel rec = new ServiceEditModel(id,price," "," ",spec);
+        return rec;
     }
 
     // добавили устройство
