@@ -17,4 +17,12 @@ public interface ConstantManager {
     String URL_ALLDEVICE = "api/alldevices";
 
     String DEVICE_ID = "DEVICE_ID";
+
+    int SERVICE_NEW = 100;
+    int SERVICE_EDIT = 101;
+
+    String ALARM_TYPE = "ALARM_TYPE";
+    int ALARM_GETSERVICE = 110;
+
+    String MODE_WORK = "MODE_WORK";
 }

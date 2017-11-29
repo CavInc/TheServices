@@ -34,6 +34,7 @@ public class InsEditServiceActivity extends AppCompatActivity implements View.On
 
 
     private int oldSelectLang = 1;
+    private int mode ;
 
     private ArrayList<LangDataModel> langData; // данный на 3 языках
 

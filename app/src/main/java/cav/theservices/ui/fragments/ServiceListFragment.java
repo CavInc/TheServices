@@ -21,6 +21,7 @@ import cav.theservices.data.models.ServiceClientEditModel;
 import cav.theservices.ui.activitys.InsEditServiceActivity;
 import cav.theservices.ui.adapters.ServiceListAdapterEdit;
 import cav.theservices.ui.dialogs.EditDeleteDialog;
+import cav.theservices.utils.ConstantManager;
 
 public class ServiceListFragment extends Fragment implements View.OnClickListener,AdapterView.OnItemLongClickListener {
 
@@ -70,6 +71,7 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         if (view.getId() == R.id.sr_list_fab){
             Intent intent = new Intent(getActivity(), InsEditServiceActivity.class);
+            intent.putExtra(ConstantManager.MODE_WORK,ConstantManager.SERVICE_NEW);
             startActivityForResult(intent,NEW_RECORD);
         }
 
@@ -103,6 +105,8 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
                 updateUI();
             }
             if (rid == R.id.dialog_edit_item) {
+                Intent intent = new Intent(getActivity(),InsEditServiceActivity.class);
+                intent.putExtra(ConstantManager.MODE_WORK,ConstantManager.SERVICE_EDIT);
 
             }
         }
