@@ -244,7 +244,7 @@ public class Request {
 
             jObj = new JSONObject(result);
 
-            ArrayList<LangDataModel> spec = new ArrayList<>();
+           ;
 
             if (jObj.has("status") && jObj.getString("status").equals("ok")){
                 //JSONObject jdata= (JSONObject)jObj.get("devices");
@@ -252,7 +252,7 @@ public class Request {
                 for (int i = 0;i < jarr.length();i++){
                     JSONObject lx =  (JSONObject) jarr.get(i);
                     Log.d(TAG,lx.toString());
-                    spec.clear();
+                    ArrayList<LangDataModel> spec = new ArrayList<>();
                     JSONArray jspec = lx.getJSONArray("serviceSpec");
                     for (int j = 0; j< jspec.length();j++){
                         Log.d(TAG,jspec.get(j).toString());
