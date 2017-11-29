@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.data.networks.Request;
+import cav.theservices.utils.Utils;
 
 /**
  * для чтения новых сервисов с сервера
@@ -42,6 +43,7 @@ public class GetAllServiceService extends Service {
                 for (ServiceEditModel l : serviceList) {
                     mDataManager.getDB().addNewService(l);
                 }
+                Utils.startAlarmGetService(mDataManager.getContext());
             }
         }).start();
     }

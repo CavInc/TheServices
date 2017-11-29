@@ -96,7 +96,7 @@ public class Request {
     public void sendDemand(String deviceId,int demandID,String comment){
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEMAND);
         post.addHeader("Accept", "application/json");
-        post.addHeader("Content-Type", "application/json; charset=utf-8");
+       // post.addHeader("Content-Type", "application/json; charset=utf-8");
         List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
         nameValuePairs.add(new BasicNameValuePair("demandID",String.valueOf(demandID)));
@@ -130,7 +130,7 @@ public class Request {
         ArrayList<DeviceModel> rec = new ArrayList<>();
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_ALLDEVICE);
         post.addHeader("Accept", "application/json");
-        post.addHeader("Content-Type", "application/json; charset=utf-8");
+       // post.addHeader("Content-Type", "application/json; charset=utf-8");
         List nameValuePairs = new ArrayList(1);
 
         try {
@@ -276,6 +276,8 @@ public class Request {
         }
         return rec;
     }
+
+    // запрос новых заявок
 
 
 }

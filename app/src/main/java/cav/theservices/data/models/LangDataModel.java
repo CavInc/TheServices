@@ -44,12 +44,15 @@ public class LangDataModel {
         }
     }
 
+    /*
     @Override
     public int hashCode() {
         int result = 1;
         result = 31 * result + mLang+mTitle.hashCode();
+        result = 31* result +mBody.hashCode();
         return result;
     }
+    */
 
 
 }

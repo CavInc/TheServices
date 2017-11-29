@@ -51,7 +51,7 @@ public class DBConnect {
             values.put("lang_id",l.getLang());
             values.put("title",l.getTitle());
             values.put("body",l.getBody());
-            database.insert(DBHelper.SERVICE_SPEC_TABLE,null,values);
+            database.insertWithOnConflict(DBHelper.SERVICE_SPEC_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         }
         close();
         return res_id;
