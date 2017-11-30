@@ -42,7 +42,7 @@ public class GetAllServiceService extends Service {
             @Override
             public void run() {
                 Request request = new Request();
-                ArrayList<ServiceEditModel> serviceList = request.getAllService();
+                ArrayList<ServiceEditModel> serviceList = request.getAllService(mDataManager.getPreferenseManager().getAndroidID());
                 for (ServiceEditModel l : serviceList) {
                     mDataManager.getDB().addNewService(l);
                 }

@@ -26,4 +26,6 @@ public interface ConstantManager {
 
     String MODE_WORK = "MODE_WORK";
     String SELECTED_ID = "SELECTED_ID";
+    int DIRECT_LEFT = 0;
+    int DIRECT_RIGTH = 1;
 }

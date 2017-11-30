@@ -42,7 +42,10 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     private int start = 0;
     private int limit = 5; // количество элементов для выборки
 
+    private int directListing = ConstantManager.DIRECT_LEFT;
+
     private UpdateReciver mUpdateReciver;
+    private int viewCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +108,12 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         Log.d(TAG,"TAP");
         if (view.getId() == R.id.ms_lv_6){
-            start += offset;
+            if (directListing == ConstantManager.DIRECT_LEFT) {
+                start += offset;
+            } else {
+                start -= offset;
+                if (start<0) start = 0;
+            }
             setDataLang();
         } else {
             Intent intent = new Intent(this,CardServiceActivity.class);
@@ -145,6 +153,14 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
 
         int i = 0;
         mDataModel =  mDataManager.getLimitService(selLang,start,limit);
+        viewCount = mDataModel.size();
+
+        if (viewCount<5 && count>6) {
+            directListing = ConstantManager.DIRECT_RIGTH;
+        } else {
+            directListing = ConstantManager.DIRECT_LEFT;
+        }
+
         for (ServiceClientModel l:mDataModel){
             //TODO добавить установку картинки
             mTextViews[i].setText(l.getTitle());
