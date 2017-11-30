@@ -21,6 +21,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //proguardFiles fileTree('proguard').asList().toArray()
         }
     }
     useLibrary 'org.apache.http.legacy'
