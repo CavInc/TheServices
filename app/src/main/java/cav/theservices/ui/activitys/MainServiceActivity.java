@@ -1,6 +1,9 @@
 package cav.theservices.ui.activitys;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,6 +41,8 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     private int offset = 5;
     private int start = 0;
     private int limit = 5; // количество элементов для выборки
+
+    private UpdateReciver mUpdateReciver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +83,22 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         mTextViews[3] = (TextView) findViewById(R.id.ms_title_4);
         mTextViews[4] = (TextView) findViewById(R.id.ms_title_5);
 
+        mUpdateReciver = new UpdateReciver();
+
+        IntentFilter updateIntentFilter = new IntentFilter(GetAllServiceService.ACTION_UPDATE);
+        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        registerReceiver(mUpdateReciver, updateIntentFilter);
+
         getAllService();// тестовая для проверки
 
         setDataLang();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mUpdateReciver);
     }
 
     @Override
@@ -146,5 +163,18 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
     private void getAllService(){
         Intent intent = new Intent(this, GetAllServiceService.class);
         startService(intent);
+    }
+
+    public interface ServiceChangeListener {
+        public void changeListener();
+    }
+
+    public class UpdateReciver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG,"RECIVER UPDATE");
+            setDataLang();
+        }
     }
 }

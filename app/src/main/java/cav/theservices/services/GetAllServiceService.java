@@ -18,6 +18,8 @@ import cav.theservices.utils.Utils;
 public class GetAllServiceService extends Service {
     private DataManager mDataManager;
 
+    public static final String ACTION_UPDATE = "ru.alexanderklimov.intentservice.UPDATE";
+
     public GetAllServiceService() {
         mDataManager = DataManager.getInstance();
     }
@@ -31,7 +33,8 @@ public class GetAllServiceService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         requestTask();
-        return START_REDELIVER_INTENT;
+        //return START_REDELIVER_INTENT;
+        return START_NOT_STICKY;
     }
 
     private void requestTask() {
@@ -44,6 +47,13 @@ public class GetAllServiceService extends Service {
                     mDataManager.getDB().addNewService(l);
                 }
                 Utils.startAlarmGetService(mDataManager.getContext());
+
+                Intent updateIntent = new Intent();
+                updateIntent.setAction(ACTION_UPDATE);
+                updateIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                sendBroadcast(updateIntent);
+
+                stopSelf();
             }
         }).start();
     }

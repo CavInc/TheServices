@@ -103,9 +103,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new Thread(new Runnable() {
             @Override
             public void run() {
+                int mode = ConstantManager.USER_MODE;
+                if (mDataManager.getPreferenseManager().getAppMode()) {
+                    mode = ConstantManager.ADMIN_MODE;
+                }
+
                 Request request = new Request();
                 request.registry(mDataManager.getPreferenseManager().getAndroidID(),
-                        ConstantManager.ADMIN_MODE,
+                        mode,
                         mDataManager.getPreferenseManager().getNameDevice());
             }
         }).start();
