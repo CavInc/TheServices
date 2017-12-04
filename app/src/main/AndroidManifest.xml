@@ -44,6 +44,7 @@
         <activity
             android:name=".ui.activitys.AdminActivity"
             android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
