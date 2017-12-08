@@ -3,6 +3,7 @@ package cav.theservices.services;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import cav.theservices.data.networks.Request;
 
@@ -18,6 +19,7 @@ public class GetDemandService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("GDS","YES ALRRM");
         reqestTask();
         return  START_REDELIVER_INTENT;
     }
