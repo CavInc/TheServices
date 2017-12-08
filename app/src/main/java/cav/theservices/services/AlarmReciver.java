@@ -30,6 +30,11 @@ public class AlarmReciver extends BroadcastReceiver {
             Intent intentService = new Intent(mContext, GetAllServiceService.class);
             mContext.startService(intentService);
         }
+        if (mReceiverID == ConstantManager.ALARM_DEMAND) {
+            Intent intentDemand = new Intent(mContext,GetDemandService.class);
+            mContext.startService(intentDemand);
+
+        }
     }
 
 

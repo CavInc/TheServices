@@ -229,7 +229,7 @@ public class Request {
         ArrayList<ServiceEditModel> rec = new ArrayList<>();
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URl_ALLSERVICE);
         post.addHeader("Accept", "application/json");
-        post.addHeader("Content-Type", "application/json; charset=utf-8");
+        //post.addHeader("Content-Type", "application/json; charset=utf-8");
 
         List nameValuePairs = new ArrayList(3);
         nameValuePairs.add(new BasicNameValuePair("deviceID", deviceId));
@@ -290,6 +290,21 @@ public class Request {
     }
 
     // запрос новых заявок
+    public void getAllNewDeamand(){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEMANDS);
+        post.addHeader("Accept", "application/json");
+
+        try {
+            HttpResponse response = mHttpClient.execute(post);
+            Header[] header = response.getAllHeaders();
+            for (int i = 0; i < header.length; i++) {
+                Log.d(TAG, String.valueOf(header[i]));
+            }
+        } catch (Exception e){
+
+        }
+
+    }
 
 
 }

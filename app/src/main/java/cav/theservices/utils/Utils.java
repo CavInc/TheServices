@@ -27,6 +27,16 @@ public class Utils {
         am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(1000*60*period),pi);
 
     }
+
+    public static void startAlarmGetDemand(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context,AlarmReciver.class);
+        intent.putExtra(ConstantManager.ALARM_TYPE,ConstantManager.ALARM_DEMAND);
+        PendingIntent pi = PendingIntent.getBroadcast(context,8710,intent,0);
+
+        int period = 30;
+        am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(10000*period),pi);
+    }
 }
 
 

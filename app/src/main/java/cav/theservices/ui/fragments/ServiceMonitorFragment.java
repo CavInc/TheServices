@@ -16,6 +16,7 @@ import cav.theservices.data.managers.DataManager;
 import cav.theservices.services.AdminGetRequestService;
 import cav.theservices.ui.adapters.DeviceMonitorAdapter;
 import cav.theservices.utils.ConstantManager;
+import cav.theservices.utils.Utils;
 
 public class ServiceMonitorFragment extends Fragment{
 
@@ -33,6 +34,8 @@ public class ServiceMonitorFragment extends Fragment{
             // запрашиваем даные с командного сервера.
             getDevices();
         }
+        // запускаем запросы новых услуг
+        Utils.startAlarmGetDemand(getActivity());
     }
 
 
