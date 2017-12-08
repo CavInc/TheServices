@@ -35,7 +35,7 @@ public class Utils {
         PendingIntent pi = PendingIntent.getBroadcast(context,8710,intent,0);
 
         int period = 30;
-        am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(10000*period),pi);
+        am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(1000*period),pi);
     }
 }
 
