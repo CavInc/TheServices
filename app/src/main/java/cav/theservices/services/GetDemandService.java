@@ -5,10 +5,17 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.networks.Request;
+import cav.theservices.utils.Utils;
 
 public class GetDemandService extends Service {
+    private DataManager mDataManager;
     public GetDemandService() {
+        mDataManager = DataManager.getInstance();
     }
 
     @Override
@@ -29,7 +36,13 @@ public class GetDemandService extends Service {
             @Override
             public void run() {
                 Request request = new Request();
-                request.getAllNewDeamand();
+                ArrayList<DemandModel> model = request.getAllNewDeamand();
+                for (DemandModel l:model){
+                    mDataManager.getDB().addNewDemand(l);
+
+                }
+
+                Utils.startAlarmGetDemand(mDataManager.getContext());
 
                 stopSelf();
             }

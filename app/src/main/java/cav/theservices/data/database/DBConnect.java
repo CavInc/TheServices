@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
 
@@ -144,6 +145,14 @@ public class DBConnect {
     // читаем список устройств
     public  Cursor getAllDevices(){
         return database.query(DBHelper.DEVICE_LIST_TABLE,new String[]{"device_id","deviceName","deviceMode"},null,null,null,null,"device_id");
+    }
+
+    // добавим полученные заявки
+    public void addNewDemand(DemandModel data){
+        open();
+        ContentValues values = new ContentValues();
+
+        close();
     }
 
 }

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.models.DeviceModel;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
@@ -256,8 +257,6 @@ public class Request {
 
             jObj = new JSONObject(result);
 
-           ;
-
             if (jObj.has("status") && jObj.getString("status").equals("ok")){
                 //JSONObject jdata= (JSONObject)jObj.get("devices");
                 JSONArray jarr = jObj.getJSONArray("services");
@@ -289,8 +288,9 @@ public class Request {
         return rec;
     }
 
-    // запрос новых заявок
-    public void getAllNewDeamand(){
+    // запрос новых заявок всех не обработанных
+    public ArrayList<DemandModel> getAllNewDeamand(){
+        ArrayList<DemandModel> rec = new ArrayList<>();
         HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEMANDS);
         post.addHeader("Accept", "application/json");
 
@@ -300,10 +300,31 @@ public class Request {
             for (int i = 0; i < header.length; i++) {
                 Log.d(TAG, String.valueOf(header[i]));
             }
-        } catch (Exception e){
 
+            String result = EntityUtils.toString(response.getEntity());
+            Log.d(TAG,result);
+
+            jObj = new JSONObject(result);
+            if (jObj.has("status") && jObj.getString("status").equals("ok")){
+                JSONArray jarr = jObj.getJSONArray("data");
+                for (int i = 0;i < jarr.length();i++){
+                    JSONObject lx =  (JSONObject) jarr.get(i);
+                    //Log.d(TAG,lx.toString());
+                    rec.add(new DemandModel(
+                            lx.getInt("id"),
+                            lx.getString("clientID"),
+                            lx.getInt("serviceId"),
+                            lx.getString("comment")
+                    ));
+                }
+            }
+
+
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
+        return rec;
     }
 
 

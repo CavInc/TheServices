@@ -41,18 +41,19 @@ public class GetAllServiceService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Request request = new Request();
-                ArrayList<ServiceEditModel> serviceList = request.getAllService(mDataManager.getPreferenseManager().getAndroidID());
-                for (ServiceEditModel l : serviceList) {
-                    mDataManager.getDB().addNewService(l);
+                if (mDataManager.isOnline()) {
+                    Request request = new Request();
+                    ArrayList<ServiceEditModel> serviceList = request.getAllService(mDataManager.getPreferenseManager().getAndroidID());
+                    for (ServiceEditModel l : serviceList) {
+                        mDataManager.getDB().addNewService(l);
+                    }
+                    Utils.startAlarmGetService(mDataManager.getContext());
+
+                    Intent updateIntent = new Intent();
+                    updateIntent.setAction(ACTION_UPDATE);
+                    updateIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                    sendBroadcast(updateIntent);
                 }
-                Utils.startAlarmGetService(mDataManager.getContext());
-
-                Intent updateIntent = new Intent();
-                updateIntent.setAction(ACTION_UPDATE);
-                updateIntent.addCategory(Intent.CATEGORY_DEFAULT);
-                sendBroadcast(updateIntent);
-
                 stopSelf();
             }
         }).start();
