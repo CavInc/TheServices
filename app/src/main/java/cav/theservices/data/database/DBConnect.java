@@ -136,14 +136,19 @@ public class DBConnect {
         values.put("device_id",deviceid);
         values.put("deviceMode",devicemode);
         values.put("deviceName",devicename);
-        database.insertWithOnConflict(DBHelper.DEVICE_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
+        database.insertWithOnConflict(DBHelper.DEVICE_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_IGNORE);
         close();
 
     }
 
     // читаем список устройств
     public  Cursor getAllDevices(){
-        return database.query(DBHelper.DEVICE_LIST_TABLE,new String[]{"device_id","deviceName","deviceMode"},null,null,null,null,"device_id");
+        String sql = "select dl.device_id,deviceMode,deviceName,count(dml.device_id) as demandCount from device_list dl \n" +
+                " LEFT join demand_list dml on dl.device_id=dml.device_id and dml.status = 0 \n" +
+                "group by  dl.device_id,deviceMode,deviceName \n" +
+                "order by dl.device_id";
+        return database.rawQuery(sql,null);
+        //return database.query(DBHelper.DEVICE_LIST_TABLE,new String[]{"device_id","deviceName","deviceMode"},null,null,null,null,"device_id");
     }
 
     // добавим полученные заявки
@@ -154,7 +159,7 @@ public class DBConnect {
         values.put("device_id",data.getDevice());
         values.put("service_id",data.getServiceID());
         values.put("comment",data.getComment());
-        database.insertWithOnConflict(DBHelper.DEMAND_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_ROLLBACK);
+        database.insertWithOnConflict(DBHelper.DEMAND_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         close();
     }
 

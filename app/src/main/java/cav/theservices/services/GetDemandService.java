@@ -43,6 +43,7 @@ public class GetDemandService extends Service {
             public void run() {
                 Request request = new Request();
                 ArrayList<DemandModel> model = request.getAllNewDeamand();
+
                 for (DemandModel l:model){
                     mDataManager.getDB().addNewDemand(l);
                     setNotification(l);

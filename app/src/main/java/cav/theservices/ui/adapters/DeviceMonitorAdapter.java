@@ -33,6 +33,11 @@ public class DeviceMonitorAdapter extends RecyclerView.Adapter<DeviceMonitorAdap
     public void onBindViewHolder(DeviceMonitorHolder holder, int position) {
         DeviceModel model = mData.get(position);
         holder.mDeviceName.setText(model.getDeviceText());
+        if (model.getDemandCount() !=0 ){
+            holder.mDeviceIcon.setImageResource(R.drawable.ic_tablet_android_green_24dp);
+        }else {
+            holder.mDeviceIcon.setImageResource(R.drawable.ic_tablet_android_black_24dp);
+        }
     }
 
     @Override
@@ -50,7 +55,6 @@ public class DeviceMonitorAdapter extends RecyclerView.Adapter<DeviceMonitorAdap
 
         public DeviceMonitorHolder(View itemView) {
             super(itemView);
-
             mDeviceIcon = (ImageView) itemView.findViewById(R.id.device_icon);
             mDeviceName = (TextView) itemView.findViewById(R.id.device_name);
 

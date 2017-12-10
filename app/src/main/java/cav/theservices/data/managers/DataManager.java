@@ -114,7 +114,8 @@ public class DataManager {
             rec.add(new DeviceModel(
                     cursor.getString(cursor.getColumnIndex("device_id")),
                     cursor.getInt(cursor.getColumnIndex("deviceMode")),
-                    cursor.getString(cursor.getColumnIndex("deviceName"))
+                    cursor.getString(cursor.getColumnIndex("deviceName")),
+                    cursor.getInt(cursor.getColumnIndex("demandCount"))
             ));
         }
         mDB.close();
