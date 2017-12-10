@@ -41,7 +41,6 @@ public class DBConnect {
         ContentValues values = new ContentValues();
         values.put("icon_file",data.getPhoto());
         values.put("price",data.getPrice());
-        Log.d("DB", String.valueOf(data.getId()));
         if (data.getId() != -1) {
             values.put("id",data.getId());
         }
@@ -151,7 +150,11 @@ public class DBConnect {
     public void addNewDemand(DemandModel data){
         open();
         ContentValues values = new ContentValues();
-
+        values.put("id",data.getID());
+        values.put("device_id",data.getDevice());
+        values.put("service_id",data.getServiceID());
+        values.put("comment",data.getComment());
+        database.insertWithOnConflict(DBHelper.DEMAND_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_ROLLBACK);
         close();
     }
 

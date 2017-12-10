@@ -50,10 +50,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
             // полученные заявки
             db.execSQL("create table "+DEMAND_LIST_TABLE+"("+
-                    "device_id text not null primary key,"+
+                    "id integer not null primary key,"+
+                    "device_id text not null,"+
                     "service_id integer,"+
                     "demand_date text,"+
-                    "status integer,"+
+                    "status integer default 0,"+ // 0 - новый 1 - в работе 2 - выполнен
                     "comment text)");
 
 

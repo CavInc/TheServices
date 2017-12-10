@@ -312,7 +312,7 @@ public class Request {
                     //Log.d(TAG,lx.toString());
                     rec.add(new DemandModel(
                             lx.getInt("id"),
-                            lx.getString("clientID"),
+                            lx.getString("clientId"),
                             lx.getInt("serviceId"),
                             lx.getString("comment")
                     ));

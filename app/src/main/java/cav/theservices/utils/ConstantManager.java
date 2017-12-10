@@ -31,4 +31,5 @@ public interface ConstantManager {
     int DIRECT_LEFT = 0;
     int DIRECT_RIGTH = 1;
 
+    final int NOTIFY_ID = 1001;
 }
