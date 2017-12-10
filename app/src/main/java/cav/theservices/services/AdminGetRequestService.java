@@ -14,6 +14,8 @@ import cav.theservices.data.networks.Request;
 // запрос данных с сервера
 public class AdminGetRequestService extends Service {
 
+    public static final String ACTION_UPDATE = "cav.theservices.services.AdminGetRequestService.UPDATE";
+
     private DataManager mDataManager;
 
     public AdminGetRequestService() {
@@ -41,6 +43,11 @@ public class AdminGetRequestService extends Service {
                 for (DeviceModel l:data){
                     Log.d("RS",l.getDeviceID()+" "+l.getDeviceText());
                 }
+
+                Intent updateIntent = new Intent();
+                updateIntent.setAction(ACTION_UPDATE);
+                updateIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                sendBroadcast(updateIntent);
 
                 stopSelf();
             }

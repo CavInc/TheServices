@@ -1,12 +1,16 @@
 package cav.theservices.ui.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +18,18 @@ import android.view.ViewGroup;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.services.AdminGetRequestService;
+import cav.theservices.services.GetDemandService;
+import cav.theservices.ui.activitys.MainServiceActivity;
 import cav.theservices.ui.adapters.DeviceMonitorAdapter;
 import cav.theservices.utils.ConstantManager;
 import cav.theservices.utils.Utils;
 
 public class ServiceMonitorFragment extends Fragment{
 
+    private static final String TAG = "SMF";
     private DataManager mDataManager;
+
+    private UpdateReciver mUpdateReciver;
 
     private RecyclerView mRecyclerView ;
 
@@ -36,6 +45,12 @@ public class ServiceMonitorFragment extends Fragment{
         }
         // запускаем запросы новых услуг
         Utils.startAlarmGetDemand(getActivity());
+
+        // ставим слушателя на обновление заявок
+        mUpdateReciver = new UpdateReciver();
+        IntentFilter updateIntentFilter = new IntentFilter(GetDemandService.ACTION_UPDATE);
+        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
     }
 
 
@@ -63,5 +78,13 @@ public class ServiceMonitorFragment extends Fragment{
         Intent intent = new Intent(getActivity(), AdminGetRequestService.class);
         intent.putExtra(ConstantManager.DEVICE_ID,mDataManager.getPreferenseManager().getAndroidID());
         getActivity().startService(intent);
+    }
+
+    public class UpdateReciver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG,"DEVICE UPDATE");
+        }
     }
 }

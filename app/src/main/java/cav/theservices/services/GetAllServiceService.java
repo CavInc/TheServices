@@ -18,7 +18,7 @@ import cav.theservices.utils.Utils;
 public class GetAllServiceService extends Service {
     private DataManager mDataManager;
 
-    public static final String ACTION_UPDATE = "ru.alexanderklimov.intentservice.UPDATE";
+    public static final String ACTION_UPDATE = "cav.theservices.services.UPDATE";
 
     public GetAllServiceService() {
         mDataManager = DataManager.getInstance();

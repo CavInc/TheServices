@@ -19,6 +19,9 @@ import cav.theservices.utils.ConstantManager;
 import cav.theservices.utils.Utils;
 
 public class GetDemandService extends Service {
+
+    public static final String ACTION_UPDATE = "cav.theservices.services.GetDemandService.UPDATE";
+
     private DataManager mDataManager;
     public GetDemandService() {
         mDataManager = DataManager.getInstance();
@@ -50,6 +53,10 @@ public class GetDemandService extends Service {
                 }
 
                 Utils.startAlarmGetDemand(mDataManager.getContext());
+                Intent updateIntent = new Intent();
+                updateIntent.setAction(ACTION_UPDATE);
+                updateIntent.addCategory(Intent.CATEGORY_DEFAULT);
+                sendBroadcast(updateIntent);
 
                 stopSelf();
             }
