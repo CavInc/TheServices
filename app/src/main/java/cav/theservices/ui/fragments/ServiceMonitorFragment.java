@@ -15,10 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
+import cav.theservices.data.models.DeviceModel;
 import cav.theservices.services.AdminGetRequestService;
 import cav.theservices.services.GetDemandService;
+import cav.theservices.ui.activitys.DemandInfoActivity;
 import cav.theservices.ui.activitys.MainServiceActivity;
 import cav.theservices.ui.adapters.DeviceMonitorAdapter;
 import cav.theservices.utils.ConstantManager;
@@ -32,6 +36,8 @@ public class ServiceMonitorFragment extends Fragment{
     private UpdateReciver mUpdateReciver;
 
     private RecyclerView mRecyclerView ;
+
+    private DeviceMonitorAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,10 +74,22 @@ public class ServiceMonitorFragment extends Fragment{
         GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 4);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        DeviceMonitorAdapter adapter = new DeviceMonitorAdapter(mDataManager.getAllDevice());
-        mRecyclerView.setAdapter(adapter);
+        updateUI();
 
         return view;
+    }
+
+    private void updateUI(){
+        ArrayList<DeviceModel> model = mDataManager.getAllDevice();
+
+        if (adapter == null) {
+            adapter = new DeviceMonitorAdapter(model,mCustomClickListener);
+            mRecyclerView.setAdapter(adapter);
+        }else {
+            adapter.setData(model);
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     private void getDevices() {
@@ -80,11 +98,24 @@ public class ServiceMonitorFragment extends Fragment{
         getActivity().startService(intent);
     }
 
+    DeviceMonitorAdapter.DeviceMonitorHolder.CustomClickListener mCustomClickListener = new DeviceMonitorAdapter.DeviceMonitorHolder.CustomClickListener() {
+        @Override
+        public void onUserItemClickListener(int adapterPosition) {
+            Log.d(TAG,String.valueOf(adapterPosition));
+
+            Intent intent = new Intent(getActivity(), DemandInfoActivity.class);
+            startActivity(intent);
+        }
+    };
+
     public class UpdateReciver extends BroadcastReceiver{
 
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG,"DEVICE UPDATE");
+            updateUI();
         }
     }
+
+
 }

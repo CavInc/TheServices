@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cav.theservices">
+<manifest package="cav.theservices"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -44,8 +44,8 @@
         <activity
             android:name=".ui.activitys.AdminActivity"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
             android:name=".ui.activitys.InsEditServiceActivity"
@@ -74,6 +74,9 @@
             android:enabled="true"
             android:exported="false">
         </service>
+
+        <activity android:name=".ui.activitys.DemandInfoActivity">
+        </activity>
     </application>
 
 </manifest>
