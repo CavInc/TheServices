@@ -75,7 +75,8 @@
             android:exported="false">
         </service>
 
-        <activity android:name=".ui.activitys.DemandInfoActivity">
+        <activity android:name=".ui.activitys.DemandInfoActivity"
+                  android:screenOrientation="landscape">
         </activity>
     </application>
 

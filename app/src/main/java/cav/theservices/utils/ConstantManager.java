@@ -32,4 +32,5 @@ public interface ConstantManager {
     int DIRECT_RIGTH = 1;
 
     final int NOTIFY_ID = 1001;
+    String SELECTED_DEVICE = "SELECTED_DEVICE";
 }

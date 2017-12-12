@@ -50,7 +50,9 @@ public class ServiceMonitorFragment extends Fragment{
             getDevices();
         }
         // запускаем запросы новых услуг
-        Utils.startAlarmGetDemand(getActivity());
+        if (mDataManager.getPreferenseManager().getAppMode()) {
+            Utils.startAlarmGetDemand(getActivity());
+        }
 
         // ставим слушателя на обновление заявок
         mUpdateReciver = new UpdateReciver();
@@ -59,7 +61,29 @@ public class ServiceMonitorFragment extends Fragment{
         getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG,"START");
+        // ставим слушателя на обновление заявок
+        mUpdateReciver = new UpdateReciver();
+        IntentFilter updateIntentFilter = new IntentFilter(GetDemandService.ACTION_UPDATE);
+        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG,"PAUSE");
+        getActivity().unregisterReceiver(mUpdateReciver);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG,"STOP");
+    }
 
     @Nullable
     @Override
@@ -102,8 +126,10 @@ public class ServiceMonitorFragment extends Fragment{
         @Override
         public void onUserItemClickListener(int adapterPosition) {
             Log.d(TAG,String.valueOf(adapterPosition));
+            DeviceModel model = (DeviceModel) adapter.getItemPost(adapterPosition);
 
             Intent intent = new Intent(getActivity(), DemandInfoActivity.class);
+            intent.putExtra(ConstantManager.SELECTED_DEVICE,model.getID());
             startActivity(intent);
         }
     };

@@ -62,6 +62,10 @@ public class DeviceMonitorAdapter extends RecyclerView.Adapter<DeviceMonitorAdap
         return 0;
     }
 
+    public Object getItemPost(int pos){
+        return mData.get(pos);
+    }
+
     public static class DeviceMonitorHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView mDeviceIcon;
