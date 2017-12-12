@@ -4,14 +4,17 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
+        android:id="@+id/di_device_name"
         android:text="Название устройтва"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/di_service_name"
         android:text="Название услуги"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/di_demand_comment"
         android:text="Комментарий"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -20,10 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            android:id="@+id/di_run_button"
             android:text="Выполнить"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <Button
+            android:id="@+id/di_cancel_button"
             android:text="Отмена"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

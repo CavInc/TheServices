@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import cav.theservices.data.models.DemandDeviceModel;
 import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
@@ -161,6 +162,30 @@ public class DBConnect {
         values.put("comment",data.getComment());
         database.insertWithOnConflict(DBHelper.DEMAND_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         close();
+    }
+
+    // получаем информацию о заявках на конкретное устройство
+    public ArrayList<DemandDeviceModel>  getDemandInDevice(String deviceId){
+        String sql = "select dl.device_id,dl.deviceName,dml.comment,dml.id as demandID,sh.id,sh.price,sh.status from device_list dl \n" +
+                " LEFT join demand_list dml on dl.device_id=dml.device_id and dml.status = 0 \n" +
+                " left join service_head sh on dml.service_id=sh.id\n" +
+                "where dl.device_id='"+deviceId+"' ";
+
+        ArrayList<DemandDeviceModel> rec = new ArrayList<>();
+        open();
+        Cursor cursor = database.rawQuery(sql,null);
+        while (cursor.moveToNext()){
+            rec.add(new DemandDeviceModel(
+                    cursor.getString(cursor.getColumnIndex("device_id")),
+                    cursor.getString(cursor.getColumnIndex("deviceName")),
+                    cursor.getString(cursor.getColumnIndex("comment")),
+                    cursor.getInt(cursor.getColumnIndex("demandID")),
+                    cursor.getDouble(cursor.getColumnIndex("price")),
+                    cursor.getInt(cursor.getColumnIndex("id"))
+            ));
+        }
+        close();
+        return rec;
     }
 
 }

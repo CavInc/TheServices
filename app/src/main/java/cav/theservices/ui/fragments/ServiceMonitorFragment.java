@@ -54,29 +54,28 @@ public class ServiceMonitorFragment extends Fragment{
             Utils.startAlarmGetDemand(getActivity());
         }
 
-        // ставим слушателя на обновление заявок
-        mUpdateReciver = new UpdateReciver();
-        IntentFilter updateIntentFilter = new IntentFilter(GetDemandService.ACTION_UPDATE);
-        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Log.d(TAG,"START");
-        // ставим слушателя на обновление заявок
-        mUpdateReciver = new UpdateReciver();
-        IntentFilter updateIntentFilter = new IntentFilter(GetDemandService.ACTION_UPDATE);
-        updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
+        if (mDataManager.getPreferenseManager().getAppMode()) {
+            // ставим слушателя на обновление заявок
+            mUpdateReciver = new UpdateReciver();
+            IntentFilter updateIntentFilter = new IntentFilter(GetDemandService.ACTION_UPDATE);
+            updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+            getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
         Log.d(TAG,"PAUSE");
-        getActivity().unregisterReceiver(mUpdateReciver);
+        if (mUpdateReciver != null) {
+            getActivity().unregisterReceiver(mUpdateReciver);
+        }
     }
 
     @Override
@@ -129,7 +128,7 @@ public class ServiceMonitorFragment extends Fragment{
             DeviceModel model = (DeviceModel) adapter.getItemPost(adapterPosition);
 
             Intent intent = new Intent(getActivity(), DemandInfoActivity.class);
-            intent.putExtra(ConstantManager.SELECTED_DEVICE,model.getID());
+            intent.putExtra(ConstantManager.SELECTED_DEVICE,model.getDeviceID());
             startActivity(intent);
         }
     };
