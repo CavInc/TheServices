@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import cav.theservices.services.AlarmReciver;
 
 public class Utils {
@@ -36,6 +40,11 @@ public class Utils {
 
         int period = 30;
         am.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis()+(1000*period),pi);
+    }
+
+    public static Date StrToDateMask(String data, String mask) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat(mask);
+        return format.parse(data);
     }
 }
 

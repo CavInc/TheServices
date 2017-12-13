@@ -1,5 +1,6 @@
 package cav.theservices.ui.activitys;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +23,12 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
 
     private TextView mDeviceNameTV;
     private TextView mCommentTV;
+    private TextView mDemandDateTV;
 
 
     private Button mCancel;
     private Button mWork;
+    private Button mClose;
 
     private int currentIndex = 0; // текущий индекс заявки
 
@@ -42,13 +45,18 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
 
         mDeviceNameTV = (TextView) findViewById(R.id.di_device_name);
         mCommentTV = (TextView) findViewById(R.id.di_demand_comment);
+        mDemandDateTV = (TextView) findViewById(R.id.di_demand_date);
 
         mWork = (Button) findViewById(R.id.di_run_button);
         mWork.setOnClickListener(this);
 
+        mClose = (Button) findViewById(R.id.di_close);
+        mClose.setOnClickListener(this);
+
 
         mDeviceNameTV.setText(data.get(currentIndex).getDeviceName());
         mCommentTV.setText(data.get(currentIndex).getComment());
+        mDemandDateTV.setText(data.get(currentIndex).getDate());
 
     }
 
@@ -72,8 +80,33 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
             }).start();
 
         }
+        if (view.getId() == R.id.di_close){
+            finish();
+        }
     }
 
     // опрос надо в AsynkTak
+
+    private class ChangeStatus extends AsyncTask<Void,Void,Void> {
+
+        private int mDemandID;
+        private int mStatus;
+
+        public ChangeStatus(int demandid,int status){
+            mDemandID = demandid;
+            mStatus = status;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+
+        }
+    }
 
 }

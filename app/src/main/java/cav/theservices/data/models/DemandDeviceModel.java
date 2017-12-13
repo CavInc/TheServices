@@ -1,5 +1,7 @@
 package cav.theservices.data.models;
 
+import android.provider.ContactsContract;
+
 import java.util.ArrayList;
 
 public class DemandDeviceModel {
@@ -9,6 +11,7 @@ public class DemandDeviceModel {
     private int mDemandId;
     private Double mPrice;
     private int mServiceId;
+    private String mDate;
 
     public DemandDeviceModel(String deviceId, String deviceName, String comment, int demandId, Double price, int serviceId) {
         mDeviceId = deviceId;
@@ -19,6 +22,16 @@ public class DemandDeviceModel {
         mServiceId = serviceId;
     }
 
+    public DemandDeviceModel(String deviceId, String deviceName, String comment, int demandId, Double price, int serviceId, String date) {
+        mDeviceId = deviceId;
+        mDeviceName = deviceName;
+        mComment = comment;
+        mDemandId = demandId;
+        mPrice = price;
+        mServiceId = serviceId;
+        mDate = date;
+    }
+
     public DemandDeviceModel(String deviceId, String deviceName, String comment, int demandId, Double price, int serviceId, ArrayList<LangDataModel> serviceSpec) {
         mDeviceId = deviceId;
         mDeviceName = deviceName;
@@ -26,6 +39,17 @@ public class DemandDeviceModel {
         mDemandId = demandId;
         mPrice = price;
         mServiceId = serviceId;
+        mServiceSpec = serviceSpec;
+    }
+
+    public DemandDeviceModel(String deviceId, String deviceName, String comment, int demandId, Double price, int serviceId, String date, ArrayList<LangDataModel> serviceSpec) {
+        mDeviceId = deviceId;
+        mDeviceName = deviceName;
+        mComment = comment;
+        mDemandId = demandId;
+        mPrice = price;
+        mServiceId = serviceId;
+        mDate = date;
         mServiceSpec = serviceSpec;
     }
 
@@ -61,5 +85,17 @@ public class DemandDeviceModel {
 
     public void setServiceSpec(ArrayList<LangDataModel> serviceSpec) {
         mServiceSpec = serviceSpec;
+    }
+
+    public String getDate() {
+        return mDate;
+    }
+
+    public String getDateOnly() {
+        return null;
+    }
+
+    public String getTimeOnly(){
+        return null;
     }
 }

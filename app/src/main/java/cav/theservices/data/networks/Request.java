@@ -31,6 +31,7 @@ import cav.theservices.data.models.DeviceModel;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.utils.ConstantManager;
+import cav.theservices.utils.Utils;
 
 @SuppressWarnings({"deprecation"})
 public class Request {
@@ -310,12 +311,15 @@ public class Request {
                 for (int i = 0;i < jarr.length();i++){
                     JSONObject lx =  (JSONObject) jarr.get(i);
                     //Log.d(TAG,lx.toString());
+
                     rec.add(new DemandModel(
                             lx.getInt("id"),
                             lx.getString("clientId"),
                             lx.getInt("serviceId"),
-                            lx.getString("comment")
+                            lx.getString("comment"),
+                            Utils.StrToDateMask(lx.getString("serviceData"),"yyyy-MM-dd HH:mm:ss")
                     ));
+
                 }
             }
 

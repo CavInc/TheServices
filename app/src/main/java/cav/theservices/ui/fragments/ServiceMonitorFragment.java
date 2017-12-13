@@ -43,23 +43,24 @@ public class ServiceMonitorFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDataManager = DataManager.getInstance();
-
-        //TODO временная затычка
-        if (mDataManager.isOnline()) {
-            // запрашиваем даные с командного сервера.
-            getDevices();
-        }
-        // запускаем запросы новых услуг
-        if (mDataManager.getPreferenseManager().getAppMode()) {
-            Utils.startAlarmGetDemand(getActivity());
-        }
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Log.d(TAG,"START");
+
+        //TODO временная затычка
+        if (mDataManager.isOnline()) {
+            // запрашиваем даные с командного сервера.
+            getDevices();
+        }
+
+        // запускаем запросы новых услуг
+        if (mDataManager.getPreferenseManager().getAppMode()) {
+            Utils.startAlarmGetDemand(getActivity());
+        }
+
         if (mDataManager.getPreferenseManager().getAppMode()) {
             // ставим слушателя на обновление заявок
             mUpdateReciver = new UpdateReciver();
@@ -67,6 +68,7 @@ public class ServiceMonitorFragment extends Fragment{
             updateIntentFilter.addCategory(Intent.CATEGORY_DEFAULT);
             getActivity().registerReceiver(mUpdateReciver, updateIntentFilter);
         }
+        updateUI();
     }
 
     @Override
@@ -97,7 +99,7 @@ public class ServiceMonitorFragment extends Fragment{
         GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 4);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        updateUI();
+
 
         return view;
     }
@@ -126,10 +128,11 @@ public class ServiceMonitorFragment extends Fragment{
         public void onUserItemClickListener(int adapterPosition) {
             Log.d(TAG,String.valueOf(adapterPosition));
             DeviceModel model = (DeviceModel) adapter.getItemPost(adapterPosition);
-
-            Intent intent = new Intent(getActivity(), DemandInfoActivity.class);
-            intent.putExtra(ConstantManager.SELECTED_DEVICE,model.getDeviceID());
-            startActivity(intent);
+            if (model.getDemandCount() !=0 ) {
+                Intent intent = new Intent(getActivity(), DemandInfoActivity.class);
+                intent.putExtra(ConstantManager.SELECTED_DEVICE, model.getDeviceID());
+                startActivity(intent);
+            }
         }
     };
 

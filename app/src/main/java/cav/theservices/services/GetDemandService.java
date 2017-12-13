@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.networks.Request;
+import cav.theservices.ui.activitys.DemandInfoActivity;
 import cav.theservices.utils.ConstantManager;
 import cav.theservices.utils.Utils;
 
@@ -71,8 +72,10 @@ public class GetDemandService extends Service {
         Notification notification = null;
         Notification.Builder builder = new Notification.Builder(mDataManager.getContext());
 
-        // пока пустой intent только сообщения
-        Intent intent = new Intent();
+        // по тапу вызовем нужное активити
+        Intent intent = new Intent(mDataManager.getContext(), DemandInfoActivity.class);
+        intent.putExtra(ConstantManager.SELECTED_DEVICE,l.getDevice());
+
         PendingIntent pi = PendingIntent.getActivity(mDataManager.getContext(),l.getID(),intent,PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pi)
                 .setSmallIcon(android.R.drawable.ic_dialog_alert)
