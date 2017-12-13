@@ -327,5 +327,38 @@ public class Request {
         return rec;
     }
 
+    // меняем статус заказа
+    public void changeDemandStatus(int demandId,int status){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_CHANGEDEMAND);
+        post.addHeader("Accept", "application/json");
+
+        List nameValuePairs = new ArrayList(2);
+        nameValuePairs.add(new BasicNameValuePair("demandID", String.valueOf(demandId)));
+        nameValuePairs.add(new BasicNameValuePair("demandStatus",String.valueOf(status)));
+
+        try {
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            HttpResponse response = mHttpClient.execute(post);
+            Header[] header = response.getAllHeaders();
+            for (int i = 0; i < header.length; i++) {
+                Log.d(TAG, String.valueOf(header[i]));
+            }
+
+            String result = EntityUtils.toString(response.getEntity());
+            Log.d(TAG,result);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+    }
+
 
 }

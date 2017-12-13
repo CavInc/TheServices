@@ -188,4 +188,12 @@ public class DBConnect {
         return rec;
     }
 
+    public void changeDemandStatus(int demandId,int status){
+        open();
+        ContentValues values = new ContentValues();
+        values.put("status",status);
+        database.update(DBHelper.DEMAND_LIST_TABLE,values,"id="+demandId,null);
+        close();
+    }
+
 }

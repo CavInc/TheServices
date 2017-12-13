@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.DemandDeviceModel;
+import cav.theservices.data.networks.Request;
 import cav.theservices.utils.ConstantManager;
 
 public class DemandInfoActivity extends AppCompatActivity implements View.OnClickListener{
@@ -26,6 +27,7 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
     private Button mCancel;
     private Button mWork;
 
+    private int currentIndex = 0; // текущий индекс заявки
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +47,33 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
         mWork.setOnClickListener(this);
 
 
-        mDeviceNameTV.setText(data.get(0).getDeviceName());
-        mCommentTV.setText(data.get(0).getComment());
+        mDeviceNameTV.setText(data.get(currentIndex).getDeviceName());
+        mCommentTV.setText(data.get(currentIndex).getComment());
 
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.di_run_button){
+            // TODO для проверки
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Request request = new Request();
+                    request.changeDemandStatus(data.get(currentIndex).getDemandId(),ConstantManager.DEMAND_STATUS_OK);
+                    // сменили в базе
+                    mDataManager.getDB().changeDemandStatus(data.get(currentIndex).getDemandId(),ConstantManager.DEMAND_STATUS_OK);
+                    data.remove(currentIndex);
+                    currentIndex +=1;
+                    if (currentIndex>data.size()) {
+                        finish();
+                    }
+                }
+            }).start();
 
         }
     }
+
+    // опрос надо в AsynkTak
+
 }

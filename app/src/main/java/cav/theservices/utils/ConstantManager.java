@@ -16,6 +16,7 @@ public interface ConstantManager {
     String URl_ALLSERVICE = "api/allservice";
     String URL_ALLDEVICE = "api/alldevices";
     String URL_DEMANDS = "api/getdemands";
+    String URL_CHANGEDEMAND = "api/changedemand";
 
     String DEVICE_ID = "DEVICE_ID";
 
@@ -32,5 +33,9 @@ public interface ConstantManager {
     int DIRECT_RIGTH = 1;
 
     final int NOTIFY_ID = 1001;
+
     String SELECTED_DEVICE = "SELECTED_DEVICE";
+
+    int DEMAND_STATUS_OK = 2;
+    int DEMAND_STATUS_WORKING = 1;
 }
