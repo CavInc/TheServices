@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientModel;
-import cav.theservices.data.models.ServiceEditModel;
 import cav.theservices.services.GetAllServiceService;
 import cav.theservices.utils.ConstantManager;
 
@@ -110,6 +109,10 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         if (view.getId() == R.id.ms_lv_6){
             if (directListing == ConstantManager.DIRECT_LEFT) {
                 start += offset;
+                if (start>=mAllCount){
+                    start = 0;
+                }
+
             } else {
                 start -= offset;
                 if (start<0) start = 0;
@@ -139,15 +142,17 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    private int mAllCount;
+
     private void setDataLang(){
-        int count = mDataManager.getDB().getCountService(1);
-        if (count!=0 ) {
+        mAllCount = mDataManager.getDB().getCountService(1);
+        if (mAllCount !=0 ) {
             for (int i = 0; i < 6; i++) {
                 mLL[i].setVisibility(View.INVISIBLE);
             }
         }
 
-        if (count > 6) {
+        if (mAllCount > 6) {
             mLL[5].setVisibility(View.VISIBLE);
         }
 
@@ -155,7 +160,7 @@ public class MainServiceActivity extends AppCompatActivity implements View.OnCli
         mDataModel =  mDataManager.getLimitService(selLang,start,limit);
         viewCount = mDataModel.size();
 
-        if (viewCount<5 && count>6) {
+        if (viewCount<5 && mAllCount >6) {
             directListing = ConstantManager.DIRECT_RIGTH;
         } else {
             directListing = ConstantManager.DIRECT_LEFT;
