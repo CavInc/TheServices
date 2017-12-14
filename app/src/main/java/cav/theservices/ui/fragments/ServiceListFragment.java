@@ -135,7 +135,8 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            mDataManager.getDB().delService(mServiceID);
+            //mDataManager.getDB().delService(mServiceID);
+            mDataManager.getDB().updateStateService(mServiceID,99); // удалили
             updateUI();
         }
     }

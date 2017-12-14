@@ -57,7 +57,6 @@ public class DemandInfoActivity extends AppCompatActivity implements View.OnClic
         mDeviceNameTV.setText(data.get(currentIndex).getDeviceName());
         mCommentTV.setText(data.get(currentIndex).getComment());
         mDemandDateTV.setText(data.get(currentIndex).getDate());
-
     }
 
     @Override

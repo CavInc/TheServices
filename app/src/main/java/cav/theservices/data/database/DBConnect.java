@@ -84,7 +84,7 @@ public class DBConnect {
 
     public Cursor getListService(int lang){
         String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
-                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang;
+                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+"where sh.status <> 99";
         return database.rawQuery(sql,null);
     }
 
@@ -171,7 +171,7 @@ public class DBConnect {
 
     // получаем информацию о заявках на конкретное устройство
     public ArrayList<DemandDeviceModel>  getDemandInDevice(String deviceId){
-        String sql = "select dl.device_id,dl.deviceName,dml.comment,dml.id as demandID,sh.id,sh.price,sh.status,dl.demand_date from device_list dl \n" +
+        String sql = "select dl.device_id,dl.deviceName,dml.comment,dml.id as demandID,sh.id,sh.price,sh.status,dml.demand_date from device_list dl \n" +
                 " LEFT join demand_list dml on dl.device_id=dml.device_id and dml.status = 0 \n" +
                 " left join service_head sh on dml.service_id=sh.id\n" +
                 "where dl.device_id='"+deviceId+"' ";
