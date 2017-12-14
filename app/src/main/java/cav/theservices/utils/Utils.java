@@ -46,6 +46,11 @@ public class Utils {
         SimpleDateFormat format = new SimpleDateFormat(mask);
         return format.parse(data);
     }
+
+    public static String DateToStrMask(Date data,String mask){
+        SimpleDateFormat format = new SimpleDateFormat(mask);
+        return format.format(data);
+    }
 }
 
 

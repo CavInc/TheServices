@@ -12,6 +12,7 @@ import cav.theservices.data.models.DemandDeviceModel;
 import cav.theservices.data.models.DemandModel;
 import cav.theservices.data.models.LangDataModel;
 import cav.theservices.data.models.ServiceEditModel;
+import cav.theservices.utils.Utils;
 
 public class DBConnect {
     private SQLiteDatabase database;
@@ -165,6 +166,7 @@ public class DBConnect {
         values.put("device_id",data.getDevice());
         values.put("service_id",data.getServiceID());
         values.put("comment",data.getComment());
+        values.put("demand_date", Utils.DateToStrMask(data.getDate(),"yyyy-MM-dd HH:mm:ss"));
         database.insertWithOnConflict(DBHelper.DEMAND_LIST_TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
         close();
     }
