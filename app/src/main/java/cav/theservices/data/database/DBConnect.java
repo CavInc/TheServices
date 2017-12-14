@@ -43,6 +43,7 @@ public class DBConnect {
         ContentValues values = new ContentValues();
         values.put("icon_file",data.getPhoto());
         values.put("price",data.getPrice());
+        values.put("status",data.getStatus());
         if (data.getId() != -1) {
             values.put("id",data.getId());
         }
@@ -85,7 +86,7 @@ public class DBConnect {
 
     public Cursor getListService(int lang){
         String sql="select sh.id,sh.price,sh.icon_file,sh.price,sp.title,sp.body from "+DBHelper.SERVICE_HEAD_TABLE+" sh"+
-                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+"where sh.status <> 99";
+                " left join "+DBHelper.SERVICE_SPEC_TABLE+" sp on sh.id=sp.id and sp.lang_id ="+lang+" where sh.status <> 99";
         return database.rawQuery(sql,null);
     }
 

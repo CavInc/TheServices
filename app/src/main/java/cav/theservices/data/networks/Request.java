@@ -276,7 +276,8 @@ public class Request {
                         ));
                     }
                     rec.add(new ServiceEditModel(lx.getInt("serviceID"),
-                            Float.parseFloat(lx.getString("servicePrice"))," "," ",spec));
+                            Float.parseFloat(lx.getString("servicePrice"))," "," ",
+                            lx.getInt("serviceStatus"),spec));
                 }
             }
 

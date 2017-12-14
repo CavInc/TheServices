@@ -8,6 +8,7 @@ public class ServiceEditModel{
     private Float mPrice;
     private String mPhoto;
     private String mBigPhoto;
+    private int mStatus = 0;
 
     private ArrayList<LangDataModel> mData;
 
@@ -23,6 +24,15 @@ public class ServiceEditModel{
         mPrice = price;
         mPhoto = photo;
         mBigPhoto = bigPhoto;
+        mData = data;
+    }
+
+    public ServiceEditModel(int id, Float price, String photo, String bigPhoto, int status, ArrayList<LangDataModel> data) {
+        mId = id;
+        mPrice = price;
+        mPhoto = photo;
+        mBigPhoto = bigPhoto;
+        mStatus = status;
         mData = data;
     }
 
@@ -44,6 +54,10 @@ public class ServiceEditModel{
 
     public ArrayList<LangDataModel> getData() {
         return mData;
+    }
+
+    public int getStatus() {
+        return mStatus;
     }
 
     public void setId(int id) {
