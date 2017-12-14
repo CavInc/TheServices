@@ -72,8 +72,13 @@ public class DBConnect {
     // удалим
     public void delService(int id){
         open();
+        /*
         database.delete(DBHelper.SERVICE_HEAD_TABLE,"id="+id,null);
         database.delete(DBHelper.SERVICE_SPEC_TABLE,"id="+id,null);
+        */
+        ContentValues values = new ContentValues();
+        values.put("status",id);
+        database.update(DBHelper.SERVICE_HEAD_TABLE,values,"id="+id,null);
         close();
     }
 

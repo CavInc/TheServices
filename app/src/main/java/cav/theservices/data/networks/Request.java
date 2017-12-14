@@ -359,10 +359,35 @@ public class Request {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-
     }
 
+    // удаляем сервис
+    public void delService(int serviceId){
+        HttpPost post= new HttpPost(BASE_URL+ ConstantManager.URL_DEL_SERVICE);
+        post.addHeader("Accept", "application/json");
+
+        List nameValuePairs = new ArrayList(1);
+        nameValuePairs.add(new BasicNameValuePair("serviceID", String.valueOf(serviceId)));
+
+        try {
+            post.setEntity(new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            HttpResponse response = mHttpClient.execute(post);
+            Header[] header = response.getAllHeaders();
+            for (int i = 0; i < header.length; i++) {
+                Log.d(TAG, String.valueOf(header[i]));
+            }
+
+            String result = EntityUtils.toString(response.getEntity());
+            Log.d(TAG,result);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 }

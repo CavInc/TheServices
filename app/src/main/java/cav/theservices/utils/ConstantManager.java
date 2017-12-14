@@ -17,6 +17,7 @@ public interface ConstantManager {
     String URL_ALLDEVICE = "api/alldevices";
     String URL_DEMANDS = "api/getdemands";
     String URL_CHANGEDEMAND = "api/changedemand";
+    String URL_DEL_SERVICE = "api/delservice";
 
     String DEVICE_ID = "DEVICE_ID";
 

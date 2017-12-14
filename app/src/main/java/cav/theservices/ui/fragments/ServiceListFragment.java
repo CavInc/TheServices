@@ -2,6 +2,7 @@ package cav.theservices.ui.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import cav.theservices.R;
 import cav.theservices.data.managers.DataManager;
 import cav.theservices.data.models.ServiceClientEditModel;
+import cav.theservices.data.networks.Request;
 import cav.theservices.ui.activitys.InsEditServiceActivity;
 import cav.theservices.ui.adapters.ServiceListAdapterEdit;
 import cav.theservices.ui.dialogs.EditDeleteDialog;
@@ -104,8 +106,9 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
         public void selectItem(int rid) {
             if (rid == R.id.dialog_del_item) {
                 //TODO сдеся удаление объекта пока без удаления на сервере.
-                mDataManager.getDB().delService(selectID);
-                updateUI();
+                //mDataManager.getDB().delService(selectID);
+                //updateUI();
+                new DeleteTask(selectID).execute();
             }
             if (rid == R.id.dialog_edit_item) {
                 Intent intent = new Intent(getActivity(),InsEditServiceActivity.class);
@@ -115,4 +118,25 @@ public class ServiceListFragment extends Fragment implements View.OnClickListene
             }
         }
     };
+
+    private class DeleteTask extends AsyncTask<Void,Void,Void> {
+        private int mServiceID;
+
+        public DeleteTask(int serviceID){
+            mServiceID = serviceID;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Request request = new Request();
+            request.delService(mServiceID);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            mDataManager.getDB().delService(mServiceID);
+            updateUI();
+        }
+    }
 }
